@@ -1,4 +1,4 @@
-package com.rousseau_alexandre.scrawlereo;
+package com.rousseau_alexandre.scrawleo;
 
 import org.junit.Test;
 

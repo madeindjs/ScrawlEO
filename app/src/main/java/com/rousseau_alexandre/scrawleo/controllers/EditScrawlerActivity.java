@@ -1,4 +1,4 @@
-package com.rousseau_alexandre.scrawlereo.controllers;
+package com.rousseau_alexandre.scrawleo.controllers;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -9,10 +9,10 @@ import android.widget.Button;
 import android.widget.EditText;
 
 
-import com.rousseau_alexandre.scrawlereo.R;
-import com.rousseau_alexandre.scrawlereo.models.Scrawler;
+import com.rousseau_alexandre.scrawleo.R;
+import com.rousseau_alexandre.scrawleo.models.Scrawler;
 
-import static com.rousseau_alexandre.scrawlereo.controllers.MainActivity.EXTRA_RECIPE;
+import static com.rousseau_alexandre.scrawleo.controllers.MainActivity.EXTRA_RECIPE;
 
 /**
  * Form to create a new recipe

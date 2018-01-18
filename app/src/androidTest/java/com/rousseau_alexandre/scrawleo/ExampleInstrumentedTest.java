@@ -1,4 +1,4 @@
-package com.rousseau_alexandre.scrawlereo;
+package com.rousseau_alexandre.scrawleo;
 
 import android.content.Context;
 import android.support.test.InstrumentationRegistry;

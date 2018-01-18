@@ -1,4 +1,4 @@
-package com.rousseau_alexandre.scrawlereo.models;
+package com.rousseau_alexandre.scrawleo.models;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -8,7 +8,7 @@ import android.widget.ArrayAdapter;
 import android.widget.TextView;
 
 
-import com.rousseau_alexandre.scrawlereo.R;
+import com.rousseau_alexandre.scrawleo.R;
 
 import java.util.List;
 

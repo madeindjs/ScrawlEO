@@ -1,4 +1,4 @@
-package com.rousseau_alexandre.scrawlereo.controllers;
+package com.rousseau_alexandre.scrawleo.controllers;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -7,8 +7,8 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 
-import com.rousseau_alexandre.scrawlereo.R;
-import com.rousseau_alexandre.scrawlereo.models.Scrawler;
+import com.rousseau_alexandre.scrawleo.models.Scrawler;
+import com.rousseau_alexandre.scrawleo.R;
 
 
 /**

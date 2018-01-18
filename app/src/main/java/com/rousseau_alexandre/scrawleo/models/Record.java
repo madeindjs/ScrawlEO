@@ -1,10 +1,8 @@
-package com.rousseau_alexandre.scrawlereo.models;
+package com.rousseau_alexandre.scrawleo.models;
 
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
-
-import com.rousseau_alexandre.scrawlereo.models.MySQLiteHelper;
 
 import java.io.Serializable;
 

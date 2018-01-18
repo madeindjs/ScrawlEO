@@ -1,12 +1,12 @@
-package com.rousseau_alexandre.scrawlereo.controllers;
+package com.rousseau_alexandre.scrawleo.controllers;
 
 import android.content.Context;
 import android.util.AttributeSet;
 import android.widget.ListView;
 
 
-import com.rousseau_alexandre.scrawlereo.models.Scrawler;
-import com.rousseau_alexandre.scrawlereo.models.ScrawlerAdapter;
+import com.rousseau_alexandre.scrawleo.models.ScrawlerAdapter;
+import com.rousseau_alexandre.scrawleo.models.Scrawler;
 
 import java.util.List;
 

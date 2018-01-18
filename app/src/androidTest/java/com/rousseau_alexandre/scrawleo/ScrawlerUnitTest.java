@@ -1,12 +1,12 @@
-package com.rousseau_alexandre.scrawlereo;
+package com.rousseau_alexandre.scrawleo;
 
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.support.test.InstrumentationRegistry;
 
-import com.rousseau_alexandre.scrawlereo.models.MySQLiteHelper;
-import com.rousseau_alexandre.scrawlereo.models.Scrawler;
+import com.rousseau_alexandre.scrawleo.models.MySQLiteHelper;
+import com.rousseau_alexandre.scrawleo.models.Scrawler;
 
 import junit.framework.TestCase;
 

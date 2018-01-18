@@ -1,4 +1,4 @@
-package com.rousseau_alexandre.scrawlereo.controllers;
+package com.rousseau_alexandre.scrawleo.controllers;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -14,9 +14,9 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.AdapterView;
 
-import com.rousseau_alexandre.scrawlereo.R;
-import com.rousseau_alexandre.scrawlereo.models.Scrawler;
-import com.rousseau_alexandre.scrawlereo.models.ScrawlerAdapter;
+import com.rousseau_alexandre.scrawleo.models.ScrawlerAdapter;
+import com.rousseau_alexandre.scrawleo.R;
+import com.rousseau_alexandre.scrawleo.models.Scrawler;
 
 
 public class MainActivity extends AppCompatActivity

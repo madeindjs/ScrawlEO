@@ -1,7 +1,7 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    tools:context="com.rousseau_alexandre.scrawlereo.MainActivity">
+    tools:context="com.rousseau_alexandre.scrawleo.com.rousseau_alexandre.scrawleo.MainActivity">
     <item
         android:id="@+id/action_settings"
         android:orderInCategory="100"

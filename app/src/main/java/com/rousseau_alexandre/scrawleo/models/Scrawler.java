@@ -1,4 +1,4 @@
-package com.rousseau_alexandre.scrawlereo.models;
+package com.rousseau_alexandre.scrawleo.models;
 
 import android.content.ContentValues;
 import android.content.Context;
