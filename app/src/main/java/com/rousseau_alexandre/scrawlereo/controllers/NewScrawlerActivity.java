@@ -8,18 +8,18 @@ import android.widget.Button;
 import android.widget.EditText;
 
 import com.rousseau_alexandre.scrawlereo.R;
-import com.rousseau_alexandre.scrawlereo.models.Recipe;
+import com.rousseau_alexandre.scrawlereo.models.Scrawler;
 
 
 /**
  * Form to create a new recipe
  */
-public class NewRecipeActivity extends AppCompatActivity {
+public class NewScrawlerActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_new_recipe);
+        setContentView(R.layout.activity_new_scrawler);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
@@ -32,11 +32,11 @@ public class NewRecipeActivity extends AppCompatActivity {
         btnSubmit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Recipe recipe = new Recipe(name.getText().toString());
-                recipe.setDescription(description.getText().toString());
-                recipe.setSteps(steps.getText().toString());
-                recipe.setIngredients(ingredients.getText().toString());
-                recipe.insert(NewRecipeActivity.this);
+                Scrawler scrawler = new Scrawler(name.getText().toString());
+                scrawler.setDescription(description.getText().toString());
+                scrawler.setSteps(steps.getText().toString());
+                scrawler.setIngredients(ingredients.getText().toString());
+                scrawler.insert(NewScrawlerActivity.this);
                 finish();
             }
         });

@@ -6,61 +6,61 @@ import android.database.sqlite.SQLiteDatabase;
 import android.support.test.InstrumentationRegistry;
 
 import com.rousseau_alexandre.scrawlereo.models.MySQLiteHelper;
-import com.rousseau_alexandre.scrawlereo.models.Recipe;
+import com.rousseau_alexandre.scrawlereo.models.Scrawler;
 
 import junit.framework.TestCase;
 
 
-public class RecipeUnitTest extends TestCase {
+public class ScrawlerUnitTest extends TestCase {
 
     public void testAll(){
         Context appContext = InstrumentationRegistry.getTargetContext();
-        assertEquals(countRows("recipes"), Recipe.all(appContext).size());
+        assertEquals(countRows("recipes"), Scrawler.all(appContext).size());
     }
 
     public void testInsert() {
         Context appContext = InstrumentationRegistry.getTargetContext();
         int initialCount = countRows("recipes");
 
-        Recipe recipe = new Recipe("Gigot");
-        assertTrue(recipe.insert(appContext));
+        Scrawler scrawler = new Scrawler("Gigot");
+        assertTrue(scrawler.insert(appContext));
 
-        assertEquals("Recipe was not added", initialCount + 1, countRows("recipes"));
+        assertEquals("Scrawler was not added", initialCount + 1, countRows("recipes"));
     }
 
     public void testGet() {
         Context appContext = InstrumentationRegistry.getTargetContext();
 
-        Recipe recipe = new Recipe("Gigot");
-        recipe.insert(appContext);
+        Scrawler scrawler = new Scrawler("Gigot");
+        scrawler.insert(appContext);
 
-        Recipe recipeFounded = Recipe.get(appContext, recipe.getId());
+        Scrawler scrawlerFounded = Scrawler.get(appContext, scrawler.getId());
 
-        assertEquals("Recipe was finded", recipe.getName(), recipeFounded.getName());
+        assertEquals("Scrawler was finded", scrawler.getName(), scrawlerFounded.getName());
     }
 
     public void testDelete() {
         Context appContext = InstrumentationRegistry.getTargetContext();
         int initialCount = countRows("recipes");
 
-        Recipe recipe = new Recipe("Gigot");
-        assertTrue(recipe.insert(appContext));
+        Scrawler scrawler = new Scrawler("Gigot");
+        assertTrue(scrawler.insert(appContext));
 
-        assertEquals("Recipe was not added", initialCount + 1, countRows("recipes"));
+        assertEquals("Scrawler was not added", initialCount + 1, countRows("recipes"));
 
-        assertTrue(recipe.delete(appContext));
-        assertEquals("Recipe was not deleted", initialCount, countRows("recipes"));
+        assertTrue(scrawler.delete(appContext));
+        assertEquals("Scrawler was not deleted", initialCount, countRows("recipes"));
     }
 
     public void testUpdate() {
         Context appContext = InstrumentationRegistry.getTargetContext();
         int initialCount = countRows("recipes", "name", "Renamed");
 
-        Recipe recipe = new Recipe("Gigot");
-        recipe.insert(appContext);
-        recipe.name = "Renamed";
-        assertTrue("Recipe was not updated", recipe.save(appContext));
-        assertEquals("Recipe was not updated", initialCount + 1, countRows("recipes", "name", "Renamed"));
+        Scrawler scrawler = new Scrawler("Gigot");
+        scrawler.insert(appContext);
+        scrawler.name = "Renamed";
+        assertTrue("Scrawler was not updated", scrawler.save(appContext));
+        assertEquals("Scrawler was not updated", initialCount + 1, countRows("recipes", "name", "Renamed"));
     }
 
     protected int countRows(String tableName) {

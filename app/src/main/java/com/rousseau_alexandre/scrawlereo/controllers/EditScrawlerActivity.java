@@ -10,25 +10,25 @@ import android.widget.EditText;
 
 
 import com.rousseau_alexandre.scrawlereo.R;
-import com.rousseau_alexandre.scrawlereo.models.Recipe;
+import com.rousseau_alexandre.scrawlereo.models.Scrawler;
 
 import static com.rousseau_alexandre.scrawlereo.controllers.MainActivity.EXTRA_RECIPE;
 
 /**
  * Form to create a new recipe
  */
-public class EditRecipeActivity extends AppCompatActivity {
+public class EditScrawlerActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_new_recipe);
+        setContentView(R.layout.activity_new_scrawler);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        // get recipe
+        // get scrawler
         Intent intent = getIntent();
-        final Recipe recipe = (Recipe) intent.getSerializableExtra(EXTRA_RECIPE);
+        final Scrawler scrawler = (Scrawler) intent.getSerializableExtra(EXTRA_RECIPE);
 
         // get all text fields
         final EditText name = (EditText) findViewById(R.id.nameText);
@@ -36,21 +36,21 @@ public class EditRecipeActivity extends AppCompatActivity {
         final EditText steps = (EditText) findViewById(R.id.stepsText);
         final EditText ingredients = (EditText) findViewById(R.id.ingredientsText);
         // fill all fields
-        name.setText(recipe.getName());
-        description.setText(recipe.getDescription());
-        steps.setText(recipe.getDescription());
-        ingredients.setText(recipe.getIngredients());
+        name.setText(scrawler.getName());
+        description.setText(scrawler.getDescription());
+        steps.setText(scrawler.getDescription());
+        ingredients.setText(scrawler.getIngredients());
 
         // set submit button callback
         Button btnSubmit = (Button) findViewById(R.id.submitButton);
         btnSubmit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                recipe.setName(name.getText().toString());
-                recipe.setDescription(description.getText().toString());
-                recipe.setSteps(steps.getText().toString());
-                recipe.setIngredients(ingredients.getText().toString());
-                recipe.save(EditRecipeActivity.this);
+                scrawler.setName(name.getText().toString());
+                scrawler.setDescription(description.getText().toString());
+                scrawler.setSteps(steps.getText().toString());
+                scrawler.setIngredients(ingredients.getText().toString());
+                scrawler.save(EditScrawlerActivity.this);
                 finish();
             }
         });

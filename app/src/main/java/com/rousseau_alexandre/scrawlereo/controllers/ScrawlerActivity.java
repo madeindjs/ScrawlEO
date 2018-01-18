@@ -11,22 +11,22 @@ import android.view.View;
 import android.widget.TextView;
 
 import com.rousseau_alexandre.scrawlereo.R;
-import com.rousseau_alexandre.scrawlereo.models.Recipe;
+import com.rousseau_alexandre.scrawlereo.models.Scrawler;
 
 import static com.rousseau_alexandre.scrawlereo.controllers.MainActivity.EXTRA_RECIPE;
 
-public class RecipeActivity extends AppCompatActivity {
+public class ScrawlerActivity extends AppCompatActivity {
 
-    private Recipe recipe;
+    private Scrawler scrawler;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_recipe);
+        setContentView(R.layout.activity_scrawler);
 
 
         Intent intent = getIntent();
-        recipe = (Recipe) intent.getSerializableExtra(EXTRA_RECIPE);
+        scrawler = (Scrawler) intent.getSerializableExtra(EXTRA_RECIPE);
 
         loadRecipeData();
 
@@ -40,16 +40,16 @@ public class RecipeActivity extends AppCompatActivity {
     }
 
     /**
-     * Set recipe
+     * Set scrawler
      */
     private void loadRecipeData() {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        toolbar.setTitle(recipe.getTitle());
+        toolbar.setTitle(scrawler.getTitle());
         setSupportActionBar(toolbar);
 
-        ((TextView) findViewById(R.id.descriptionText)).setText(recipe.getDescription());
-        ((TextView) findViewById(R.id.stepsText)).setText(recipe.getSteps());
-        ((TextView) findViewById(R.id.ingredientsText)).setText(recipe.getIngredients());
+        ((TextView) findViewById(R.id.descriptionText)).setText(scrawler.getDescription());
+        ((TextView) findViewById(R.id.stepsText)).setText(scrawler.getSteps());
+        ((TextView) findViewById(R.id.ingredientsText)).setText(scrawler.getIngredients());
     }
 
     @Override
@@ -70,12 +70,12 @@ public class RecipeActivity extends AppCompatActivity {
         switch (item.getItemId()) {
             case R.id.editMenuItem:
                 // newGame();
-                Intent intent = new Intent(RecipeActivity.this, EditRecipeActivity.class);
-                intent.putExtra(EXTRA_RECIPE, recipe);
+                Intent intent = new Intent(ScrawlerActivity.this, EditScrawlerActivity.class);
+                intent.putExtra(EXTRA_RECIPE, scrawler);
                 startActivity(intent);
                 return true;
             case R.id.deleteMenuItem:
-                recipe.delete(RecipeActivity.this);
+                scrawler.delete(ScrawlerActivity.this);
                 finish();
                 return true;
             default:
@@ -86,8 +86,8 @@ public class RecipeActivity extends AppCompatActivity {
     @Override
     protected void onResume(){
         super.onResume();
-        long id = recipe.getId();
-        recipe = Recipe.get(RecipeActivity.this, id);
+        long id = scrawler.getId();
+        scrawler = Scrawler.get(ScrawlerActivity.this, id);
         loadRecipeData();
     }
 }

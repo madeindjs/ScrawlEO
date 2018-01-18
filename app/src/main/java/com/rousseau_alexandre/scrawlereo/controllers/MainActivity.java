@@ -15,8 +15,8 @@ import android.view.MenuItem;
 import android.widget.AdapterView;
 
 import com.rousseau_alexandre.scrawlereo.R;
-import com.rousseau_alexandre.scrawlereo.models.Recipe;
-import com.rousseau_alexandre.scrawlereo.models.RecipeAdapter;
+import com.rousseau_alexandre.scrawlereo.models.Scrawler;
+import com.rousseau_alexandre.scrawlereo.models.ScrawlerAdapter;
 
 
 public class MainActivity extends AppCompatActivity
@@ -25,10 +25,10 @@ public class MainActivity extends AppCompatActivity
     public static final String EXTRA_RECIPE = "com.rousseau_alexandre.raspberrycook.RECIPE";
 
 
-    protected ListViewRecipes listRecipe;
+    protected ListViewScrawlers listRecipe;
 
     public void refreshListViewRecipe() {
-        RecipeAdapter adapter = (RecipeAdapter) listRecipe.getAdapter();
+        ScrawlerAdapter adapter = (ScrawlerAdapter) listRecipe.getAdapter();
         adapter.reload();
     }
 
@@ -43,7 +43,7 @@ public class MainActivity extends AppCompatActivity
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(MainActivity.this, NewRecipeActivity.class));
+                startActivity(new Intent(MainActivity.this, NewScrawlerActivity.class));
             }
         });
 
@@ -60,15 +60,15 @@ public class MainActivity extends AppCompatActivity
 
 
         // create a new
-        listRecipe = (ListViewRecipes) findViewById(R.id.listRecipe);
+        listRecipe = (ListViewScrawlers) findViewById(R.id.listRecipe);
         listRecipe.loadRecipes(MainActivity.this);
         listRecipe.setOnItemClickListener(new AdapterView.OnItemClickListener() {
 
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                Recipe recipe = (Recipe) listRecipe.getItemAtPosition(position);
-                Intent intent = new Intent(MainActivity.this, RecipeActivity.class);
-                intent.putExtra(EXTRA_RECIPE, recipe);
+                Scrawler scrawler = (Scrawler) listRecipe.getItemAtPosition(position);
+                Intent intent = new Intent(MainActivity.this, ScrawlerActivity.class);
+                intent.putExtra(EXTRA_RECIPE, scrawler);
                 startActivity(intent);
             }
         });
@@ -138,7 +138,7 @@ public class MainActivity extends AppCompatActivity
     @Override
     protected void onResume(){
         super.onResume();
-        RecipeAdapter adapter = (RecipeAdapter) listRecipe.getAdapter();
+        ScrawlerAdapter adapter = (ScrawlerAdapter) listRecipe.getAdapter();
         adapter.reload();
         System.out.println("onResume called");
     }

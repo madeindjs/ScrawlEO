@@ -20,16 +20,16 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".controllers.RecipeActivity"
-            android:label="@string/title_activity_recipe"
+            android:name=".controllers.ScrawlerActivity"
+            android:label="@string/title_activity_scrawler"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name=".controllers.NewRecipeActivity"
-            android:label="@string/title_activity_new_recipe"
+            android:name=".controllers.NewScrawlerActivity"
+            android:label="@string/title_activity_new_scrawler"
             android:theme="@style/AppTheme.NoActionBar"></activity>
         <activity
-            android:name=".controllers.EditRecipeActivity"
-            android:label="@string/title_activity_edit_recipe"
+            android:name=".controllers.EditScrawlerActivity"
+            android:label="@string/title_activity_edit_scrawler"
             android:theme="@style/AppTheme.NoActionBar"></activity>
     </application>
 

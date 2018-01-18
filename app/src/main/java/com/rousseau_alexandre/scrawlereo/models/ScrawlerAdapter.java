@@ -18,18 +18,18 @@ import java.util.List;
  * https://github.com/florent37/TutosAndroidFrance/tree/master/ListViewSample
  * http://tutos-android-france.com/listview-afficher-une-liste-delements/
  */
-public class RecipeAdapter extends ArrayAdapter<Recipe> {
+public class ScrawlerAdapter extends ArrayAdapter<Scrawler> {
 
 
-    public RecipeAdapter(Context context, List<Recipe> recipes) {
-        super(context, 0, recipes);
+    public ScrawlerAdapter(Context context, List<Scrawler> scrawlers) {
+        super(context, 0, scrawlers);
     }
 
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
 
         if(convertView == null){
-            convertView = LayoutInflater.from(getContext()).inflate(R.layout.list_recipe, parent, false);
+            convertView = LayoutInflater.from(getContext()).inflate(R.layout.list_scrawler, parent, false);
         }
 
         RecipeViewHolder viewHolder = (RecipeViewHolder) convertView.getTag();
@@ -41,17 +41,17 @@ public class RecipeAdapter extends ArrayAdapter<Recipe> {
         }
 
         // `getItem(position)` va récupérer l'item [position] de la List<Tweet> tweets
-        Recipe recipe = getItem(position);
+        Scrawler scrawler = getItem(position);
 
         // il ne reste plus qu'à remplir notre vue
-        viewHolder.name.setText(recipe.name);
+        viewHolder.name.setText(scrawler.name);
 
         return convertView;
     }
 
     public void reload() {
         clear();
-        addAll(Recipe.all(getContext()));
+        addAll(Scrawler.all(getContext()));
         System.out.println("ListView reloaded");
         notifyDataSetChanged();
     }

@@ -12,7 +12,7 @@ import java.util.List;
 /**
  * Represent a recipe from raspberry-cook.fr
  */
-public class Recipe extends Record {
+public class Scrawler extends Record {
 
     public String name;
     public long user_id;
@@ -32,11 +32,11 @@ public class Recipe extends Record {
     public int cooking = 0;
 
 
-    public Recipe(String _name) {
+    public Scrawler(String _name) {
         name = _name;
     }
 
-    public Recipe(long _id, String _name) {
+    public Scrawler(long _id, String _name) {
         this(_name);
         id = _id;
     }
@@ -45,7 +45,7 @@ public class Recipe extends Record {
      * Cursor obtened from this kind of query `SELECT id, name, description, ingredients, steps FROM recipes`
      * @param cursor
      */
-    public Recipe(Cursor cursor) {
+    public Scrawler(Cursor cursor) {
         id = cursor.getLong(0);
         name = cursor.getString(1);
         description = cursor.getString(2);
@@ -53,28 +53,28 @@ public class Recipe extends Record {
         steps = cursor.getString(4);
     }
 
-    public static List<Recipe> all(Context context) {
+    public static List<Scrawler> all(Context context) {
         SQLiteDatabase database = getDatabase(context);
         Cursor cursor = database.rawQuery("SELECT id, name, description, ingredients, steps FROM " + TABLE_NAME, null);
 
 
-        List<Recipe> recipes = new ArrayList<>();
+        List<Scrawler> scrawlers = new ArrayList<>();
         cursor.moveToFirst();
         while (!cursor.isAfterLast()) {
-            recipes.add(new Recipe(cursor));
+            scrawlers.add(new Scrawler(cursor));
             cursor.moveToNext();
         }
 
-        return recipes;
+        return scrawlers;
     }
 
-    public static Recipe get(Context context, long id) {
+    public static Scrawler get(Context context, long id) {
         SQLiteDatabase database = getDatabase(context);
         String sql = String.format("SELECT id, name, description, ingredients, steps FROM %s WHERE id = ?", TABLE_NAME);
         Cursor cursor = database.rawQuery(sql, new String[]{Long.toString(id)});
         cursor.moveToFirst();
 
-        return new Recipe(cursor);
+        return new Scrawler(cursor);
     }
 
     public long getId() {
