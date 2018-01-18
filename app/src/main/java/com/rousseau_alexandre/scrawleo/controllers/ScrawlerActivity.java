@@ -46,10 +46,6 @@ public class ScrawlerActivity extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         toolbar.setTitle(scrawler.getTitle());
         setSupportActionBar(toolbar);
-
-        ((TextView) findViewById(R.id.descriptionText)).setText(scrawler.getDescription());
-        ((TextView) findViewById(R.id.stepsText)).setText(scrawler.getSteps());
-        ((TextView) findViewById(R.id.ingredientsText)).setText(scrawler.getIngredients());
     }
 
     @Override

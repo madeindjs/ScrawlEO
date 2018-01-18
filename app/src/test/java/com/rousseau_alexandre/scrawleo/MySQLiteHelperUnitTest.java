@@ -20,10 +20,10 @@ public class MySQLiteHelperUnitTest extends TestCase {
         MySQLiteHelper helper = new MySQLiteHelper(appContext);
         SQLiteDatabase database = helper.getWritableDatabase();
         // check if recipes table is created
-        Cursor cursor = database.rawQuery("SELECT name FROM sqlite_master WHERE type='table' AND name='recipes'", null);
+        Cursor cursor = database.rawQuery("SELECT url FROM sqlite_master WHERE type='table' AND url='recipes'", null);
         assertSame(1, cursor.getCount());
         // check if azaz table is created
-        cursor = database.rawQuery("SELECT name FROM sqlite_master WHERE type='table' AND name='azaz'", null);
+        cursor = database.rawQuery("SELECT url FROM sqlite_master WHERE type='table' AND url='azaz'", null);
         assertSame(0, cursor.getCount());
     }
     */

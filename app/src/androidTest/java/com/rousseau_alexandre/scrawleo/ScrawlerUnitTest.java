@@ -36,7 +36,7 @@ public class ScrawlerUnitTest extends TestCase {
 
         Scrawler scrawlerFounded = Scrawler.get(appContext, scrawler.getId());
 
-        assertEquals("Scrawler was finded", scrawler.getName(), scrawlerFounded.getName());
+        assertEquals("Scrawler was finded", scrawler.getUrl(), scrawlerFounded.getUrl());
     }
 
     public void testDelete() {
@@ -54,13 +54,13 @@ public class ScrawlerUnitTest extends TestCase {
 
     public void testUpdate() {
         Context appContext = InstrumentationRegistry.getTargetContext();
-        int initialCount = countRows("recipes", "name", "Renamed");
+        int initialCount = countRows("recipes", "url", "Renamed");
 
         Scrawler scrawler = new Scrawler("Gigot");
         scrawler.insert(appContext);
-        scrawler.name = "Renamed";
+        scrawler.url = "Renamed";
         assertTrue("Scrawler was not updated", scrawler.save(appContext));
-        assertEquals("Scrawler was not updated", initialCount + 1, countRows("recipes", "name", "Renamed"));
+        assertEquals("Scrawler was not updated", initialCount + 1, countRows("recipes", "url", "Renamed"));
     }
 
     protected int countRows(String tableName) {

@@ -44,7 +44,7 @@ public class ScrawlerAdapter extends ArrayAdapter<Scrawler> {
         Scrawler scrawler = getItem(position);
 
         // il ne reste plus qu'à remplir notre vue
-        viewHolder.name.setText(scrawler.name);
+        viewHolder.name.setText(scrawler.url);
 
         return convertView;
     }

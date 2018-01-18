@@ -24,18 +24,12 @@ public class NewScrawlerActivity extends AppCompatActivity {
         setSupportActionBar(toolbar);
 
         final EditText name = (EditText) findViewById(R.id.nameText);
-        final EditText description = (EditText) findViewById(R.id.descriptionText);
-        final EditText steps = (EditText) findViewById(R.id.stepsText);
-        final EditText ingredients = (EditText) findViewById(R.id.ingredientsText);
         Button btnSubmit = (Button) findViewById(R.id.submitButton);
 
         btnSubmit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Scrawler scrawler = new Scrawler(name.getText().toString());
-                scrawler.setDescription(description.getText().toString());
-                scrawler.setSteps(steps.getText().toString());
-                scrawler.setIngredients(ingredients.getText().toString());
                 scrawler.insert(NewScrawlerActivity.this);
                 finish();
             }

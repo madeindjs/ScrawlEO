@@ -32,25 +32,15 @@ public class EditScrawlerActivity extends AppCompatActivity {
 
         // get all text fields
         final EditText name = (EditText) findViewById(R.id.nameText);
-        final EditText description = (EditText) findViewById(R.id.descriptionText);
-        final EditText steps = (EditText) findViewById(R.id.stepsText);
-        final EditText ingredients = (EditText) findViewById(R.id.ingredientsText);
         // fill all fields
-        name.setText(scrawler.getName());
-        description.setText(scrawler.getDescription());
-        steps.setText(scrawler.getDescription());
-        ingredients.setText(scrawler.getIngredients());
+        name.setText(scrawler.getUrl());
 
         // set submit button callback
         Button btnSubmit = (Button) findViewById(R.id.submitButton);
         btnSubmit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                scrawler.setName(name.getText().toString());
-                scrawler.setDescription(description.getText().toString());
-                scrawler.setSteps(steps.getText().toString());
-                scrawler.setIngredients(ingredients.getText().toString());
-                scrawler.save(EditScrawlerActivity.this);
+                scrawler.setUrl(name.getText().toString());
                 finish();
             }
         });

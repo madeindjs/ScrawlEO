@@ -16,7 +16,7 @@ public abstract class Record implements Serializable {
      *
      * @todo find a way to rewritte in in child class
      */
-    public static String TABLE_NAME = "recipes";
+    public static String TABLE_NAME = "scrawlers";
 
     protected long id;
 
