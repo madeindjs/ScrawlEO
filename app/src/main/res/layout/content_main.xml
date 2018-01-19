@@ -12,7 +12,8 @@
         android:id="@+id/listRecipe"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:divider="@color/colorAccent"
+        android:divider="@android:color/darker_gray"
+        android:dividerHeight="1dp"
         tools:layout_editor_absoluteX="8dp"
         tools:layout_editor_absoluteY="8dp" />
 
