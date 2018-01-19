@@ -41,6 +41,7 @@ public class EditScrawlerActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 scrawler.setUrl(name.getText().toString());
+                scrawler.save(EditScrawlerActivity.this);
                 finish();
             }
         });
