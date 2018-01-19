@@ -8,12 +8,56 @@
     android:padding="20dp">
 
     <TextView
+        android:id="@+id/textView4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="3 url scraped"
+        android:textAppearance="@android:style/TextAppearance.Material.Small"
+        android:layout_above="@+id/imageView3"
+        android:layout_toEndOf="@+id/imageView4" />
+
+    <TextView
+        android:id="@+id/nbScraped"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/imageView3"
+        android:layout_toEndOf="@+id/imageView3"
+        android:text="2018-05-31 20:30:00"
+        android:textAppearance="@android:style/TextAppearance.Material.Small" />
+
+    <TextView
         android:id="@+id/name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/imageView2"
-        android:layout_centerHorizontal="true"
-        android:textAppearance="@android:style/TextAppearance.Material.Medium"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:textAppearance="@android:style/TextAppearance.Material.Large"
         tools:text="Scrawler's url" />
+
+    <ImageView
+        android:id="@+id/imageView3"
+        android:layout_width="24dp"
+        android:layout_height="24dp"
+        android:layout_alignParentStart="true"
+        android:layout_below="@+id/imageView4"
+        app:srcCompat="@android:drawable/ic_menu_recent_history" />
+
+    <ImageView
+        android:id="@+id/imageView4"
+        android:layout_width="24dp"
+        android:layout_height="24dp"
+        app:srcCompat="@android:drawable/ic_menu_view"
+        android:layout_below="@+id/progressBar"
+        android:layout_alignParentStart="true" />
+
+    <ProgressBar
+        android:id="@+id/progressBar"
+        style="?android:attr/progressBarStyleHorizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:max="100"
+        android:progress="20"
+        android:layout_below="@+id/name"
+        android:layout_alignParentStart="true" />
 
 </RelativeLayout>
