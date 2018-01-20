@@ -8,15 +8,16 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.TextView;
 
 import com.rousseau_alexandre.scrawleo.R;
+import com.rousseau_alexandre.scrawleo.models.Page;
 import com.rousseau_alexandre.scrawleo.models.Scrawler;
 
 import static com.rousseau_alexandre.scrawleo.controllers.MainActivity.EXTRA_RECIPE;
 
 public class ScrawlerActivity extends AppCompatActivity {
 
+    private ListViewPages listPage;
     private Scrawler scrawler;
 
     @Override
@@ -28,13 +29,18 @@ public class ScrawlerActivity extends AppCompatActivity {
         Intent intent = getIntent();
         scrawler = (Scrawler) intent.getSerializableExtra(EXTRA_RECIPE);
 
-        loadRecipeData();
+        loadScrawlerData();
+
+        listPage = (ListViewPages) findViewById(R.id.listPage);
+        listPage.loadPages(ScrawlerActivity.this);
 
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
+                Page page = new Page("Added");
+                page.insert(ScrawlerActivity.this);
+                finish();
             }
         });
     }
@@ -42,7 +48,7 @@ public class ScrawlerActivity extends AppCompatActivity {
     /**
      * Set scrawler
      */
-    private void loadRecipeData() {
+    private void loadScrawlerData() {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         toolbar.setTitle(scrawler.getTitle());
         setSupportActionBar(toolbar);
@@ -84,6 +90,6 @@ public class ScrawlerActivity extends AppCompatActivity {
         super.onResume();
         long id = scrawler.getId();
         scrawler = Scrawler.get(ScrawlerActivity.this, id);
-        loadRecipeData();
+        loadScrawlerData();
     }
 }

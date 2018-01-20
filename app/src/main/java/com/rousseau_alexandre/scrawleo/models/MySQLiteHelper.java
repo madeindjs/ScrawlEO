@@ -7,23 +7,20 @@ import android.util.Log;
 
 public class MySQLiteHelper extends SQLiteOpenHelper {
 
-    public static final String TABLE_SCRAWLER = "scrawlers";
-
     private static final String DATABASE_NAME = "scrawler.sqlite";
-    private static final int DATABASE_VERSION = 1;
+    private static final int DATABASE_VERSION = 6;
 
     /**
      * SQL Query to create database
      */
-    private static final String DATABASE_CREATE = "CREATE TABLE " + TABLE_SCRAWLER + " (id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, url TEXT NOT NULL)" ;
-
     public MySQLiteHelper(Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
     }
 
     @Override
     public void onCreate(SQLiteDatabase database) {
-        database.execSQL(DATABASE_CREATE);
+        database.execSQL(Page.DATABASE_CREATE);
+        database.execSQL(Scrawler.DATABASE_CREATE);
     }
 
     @Override
@@ -35,7 +32,8 @@ public class MySQLiteHelper extends SQLiteOpenHelper {
                         oldVersion, newVersion
                 )
         );
-        db.execSQL("DROP TABLE IF EXISTS " + TABLE_SCRAWLER);
+        db.execSQL("DROP TABLE IF EXISTS " + Scrawler.TABLE_NAME );
+        db.execSQL("DROP TABLE IF EXISTS " + Page.TABLE_NAME );
         onCreate(db);
     }
 }

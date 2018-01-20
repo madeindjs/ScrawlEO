@@ -16,11 +16,9 @@ public abstract class Record implements Serializable {
      *
      * @todo find a way to rewritte in in child class
      */
-    public static String TABLE_NAME = "scrawlers";
+    public static String TABLE_NAME;
 
     protected long id;
-
-
 
     /**
      * Save the given record into database
@@ -30,7 +28,7 @@ public abstract class Record implements Serializable {
      */
     public boolean save(Context context) {
         int countRows =getDatabase(context).update(
-                TABLE_NAME,
+                getTableName(),
                 toContentValues(),
                 "id = ?",
                 new String[]{Long.toString(id)}
@@ -46,7 +44,9 @@ public abstract class Record implements Serializable {
      * @return `true` if success
      */
     public boolean insert(Context context) {
-        long newId = getDatabase(context).insert(TABLE_NAME, null, toContentValues());
+        long newId = getDatabase(context).insert(
+                getTableName(), null, toContentValues()
+        );
         if(newId == -1){
             return false;
         }else{
@@ -64,22 +64,12 @@ public abstract class Record implements Serializable {
     public boolean delete(Context context) {
         System.out.println("Try to delete with id = " + id);
         int count = getDatabase(context).delete(
-                TABLE_NAME,
+                getTableName(),
                 "id = ?",
                 new String[]{Long.toString(id)}
         );
 
         return count > 0;
-    }
-
-    /**
-     * Synchronise given record from https://raspberry-cook.fr
-     *
-     * @param context
-     * @return `true` if success
-     */
-    public boolean synchronise(Context context) {
-        return false;
     }
 
     protected ContentValues toContentValues() {
@@ -89,6 +79,10 @@ public abstract class Record implements Serializable {
     protected static SQLiteDatabase getDatabase(Context context) {
         MySQLiteHelper helper = new MySQLiteHelper(context);
         return helper.getWritableDatabase();
+    }
+
+    protected String getTableName() {
+        return TABLE_NAME;
     }
 
 }

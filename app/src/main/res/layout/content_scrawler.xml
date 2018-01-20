@@ -8,13 +8,16 @@
     tools:context="com.rousseau_alexandre.scrawleo.com.rousseau_alexandre.scrawleo.controllers.ScrawlerActivity"
     tools:showIn="@layout/activity_scrawler">
 
-    <ListView
-        android:layout_width="368dp"
-        android:layout_height="134dp"
+    <com.rousseau_alexandre.scrawleo.controllers.ListViewPages
+        android:id="@+id/listPage"
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        android:layout_marginBottom="8dp"
         android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
-        android:background="@color/colorPrimary"
+        android:scrollbars="vertical"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />

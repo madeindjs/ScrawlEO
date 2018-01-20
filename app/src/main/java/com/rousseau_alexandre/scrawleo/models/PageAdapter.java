@@ -7,55 +7,54 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.TextView;
 
-
 import com.rousseau_alexandre.scrawleo.R;
 
 import java.util.List;
 
 /**
- * Adapter for list or recipes
+ * Adapter for list or pages
  *
  * https://github.com/florent37/TutosAndroidFrance/tree/master/ListViewSample
  * http://tutos-android-france.com/listview-afficher-une-liste-delements/
  */
-public class ScrawlerAdapter extends ArrayAdapter<Scrawler> {
+public class PageAdapter extends ArrayAdapter<Page> {
 
 
-    public ScrawlerAdapter(Context context, List<Scrawler> scrawlers) {
-        super(context, 0, scrawlers);
+    public PageAdapter(Context context, List<Page> pages) {
+        super(context, 0, pages);
     }
 
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
 
         if(convertView == null){
-            convertView = LayoutInflater.from(getContext()).inflate(R.layout.list_scrawler, parent, false);
+            convertView = LayoutInflater.from(getContext()).inflate(R.layout.list_page, parent, false);
         }
 
         RecipeViewHolder viewHolder = (RecipeViewHolder) convertView.getTag();
 
         if(viewHolder == null){
             viewHolder = new RecipeViewHolder();
-            viewHolder.name = (TextView) convertView.findViewById(R.id.name);
+            viewHolder.url = (TextView) convertView.findViewById(R.id.url);
             convertView.setTag(viewHolder);
         }
 
         // `getItem(position)` va récupérer l'item [position] de la List<Tweet> tweets
-        Scrawler scrawler = getItem(position);
+        Page page = getItem(position);
 
         // il ne reste plus qu'à remplir notre vue
-        viewHolder.name.setText(scrawler.url);
+        viewHolder.url.setText(page.getUrl());
 
         return convertView;
     }
 
     public void reload() {
         clear();
-        addAll(Scrawler.all(getContext()));
+        addAll(Page.all(getContext()));
         notifyDataSetChanged();
     }
 
     private class RecipeViewHolder {
-        public TextView name;
+        public TextView url;
     }
 }

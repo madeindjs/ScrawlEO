@@ -25,12 +25,7 @@ public class MainActivity extends AppCompatActivity
     public static final String EXTRA_RECIPE = "com.rousseau_alexandre.raspberrycook.RECIPE";
 
 
-    protected ListViewScrawlers listRecipe;
-
-    public void refreshListViewRecipe() {
-        ScrawlerAdapter adapter = (ScrawlerAdapter) listRecipe.getAdapter();
-        adapter.reload();
-    }
+    protected ListViewScrawlers listScrawler;
 
 
     @Override
@@ -60,13 +55,13 @@ public class MainActivity extends AppCompatActivity
 
 
         // create a new
-        listRecipe = (ListViewScrawlers) findViewById(R.id.listRecipe);
-        listRecipe.loadRecipes(MainActivity.this);
-        listRecipe.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+        listScrawler = (ListViewScrawlers) findViewById(R.id.listScrawler);
+        listScrawler.loadRecipes(MainActivity.this);
+        listScrawler.setOnItemClickListener(new AdapterView.OnItemClickListener() {
 
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                Scrawler scrawler = (Scrawler) listRecipe.getItemAtPosition(position);
+                Scrawler scrawler = (Scrawler) listScrawler.getItemAtPosition(position);
                 Intent intent = new Intent(MainActivity.this, ScrawlerActivity.class);
                 intent.putExtra(EXTRA_RECIPE, scrawler);
                 startActivity(intent);
@@ -138,7 +133,7 @@ public class MainActivity extends AppCompatActivity
     @Override
     protected void onResume(){
         super.onResume();
-        ScrawlerAdapter adapter = (ScrawlerAdapter) listRecipe.getAdapter();
+        ScrawlerAdapter adapter = (ScrawlerAdapter) listScrawler.getAdapter();
         adapter.reload();
         System.out.println("onResume called");
     }

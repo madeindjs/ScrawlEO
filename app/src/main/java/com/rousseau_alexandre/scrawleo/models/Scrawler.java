@@ -14,6 +14,9 @@ import java.util.List;
  */
 public class Scrawler extends Record {
 
+    public static final String TABLE_NAME = "scrawlers";
+    public static final String DATABASE_CREATE = "CREATE TABLE " + TABLE_NAME + " (id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, url TEXT NOT NULL);";
+
     public String url;
 
 
@@ -72,11 +75,6 @@ public class Scrawler extends Record {
     }
 
 
-    @Override
-    public boolean synchronise(Context context) {
-        return false;
-    }
-
     protected ContentValues toContentValues() {
         ContentValues values = new ContentValues();
         values.put("url", url);
@@ -84,7 +82,15 @@ public class Scrawler extends Record {
     }
 
     public String getTitle(){
-        return String.format("%s # %s", id, url);
+        return url;
+    }
+
+    /**
+     * Dirty truck to get table name in child class
+     * @return
+     */
+    protected String getTableName() {
+        return TABLE_NAME;
     }
 
 }

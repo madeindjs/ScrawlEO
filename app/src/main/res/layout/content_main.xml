@@ -9,7 +9,7 @@
     tools:showIn="@layout/app_bar_main">
 
     <com.rousseau_alexandre.scrawleo.controllers.ListViewScrawlers
-        android:id="@+id/listRecipe"
+        android:id="@+id/listScrawler"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:divider="@android:color/darker_gray"
