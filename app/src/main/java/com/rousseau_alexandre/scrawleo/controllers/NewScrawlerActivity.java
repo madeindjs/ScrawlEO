@@ -12,7 +12,7 @@ import com.rousseau_alexandre.scrawleo.R;
 
 
 /**
- * Form to create a new recipe
+ * Form to create a new scrawler
  */
 public class NewScrawlerActivity extends AppCompatActivity {
 

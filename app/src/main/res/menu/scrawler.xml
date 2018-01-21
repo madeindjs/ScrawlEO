@@ -5,9 +5,9 @@
     <item
         android:id="@+id/editMenuItem"
         android:icon="@android:drawable/ic_menu_edit"
-        android:title="Modifier" />
+        android:title="@string/title_activity_edit_scrawler" />
     <item
         android:id="@+id/deleteMenuItem"
         android:icon="@android:drawable/ic_menu_delete"
-        android:title="Supprimer" />
+        android:title="Remove" />
 </menu>

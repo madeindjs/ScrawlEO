@@ -10,7 +10,7 @@ import java.util.Date;
 import java.util.List;
 
 /**
- * Represent a recipe from raspberry-cook.fr
+ * Represent a scrawler from raspberry-cook.fr
  */
 public class Scrawler extends Record {
 

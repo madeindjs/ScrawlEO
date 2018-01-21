@@ -15,7 +15,7 @@ import com.rousseau_alexandre.scrawleo.models.Scrawler;
 import static com.rousseau_alexandre.scrawleo.controllers.MainActivity.EXTRA_RECIPE;
 
 /**
- * Form to create a new recipe
+ * Form to create a new scrawler
  */
 public class EditScrawlerActivity extends AppCompatActivity {
 
