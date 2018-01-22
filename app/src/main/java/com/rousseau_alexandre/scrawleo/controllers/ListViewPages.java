@@ -5,6 +5,7 @@ import android.util.AttributeSet;
 import android.widget.ListView;
 
 import com.rousseau_alexandre.scrawleo.models.Page;
+import com.rousseau_alexandre.scrawleo.models.Scrawler;
 import com.rousseau_alexandre.scrawleo.models.PageAdapter;
 
 import java.util.List;
@@ -41,8 +42,8 @@ public class ListViewPages extends ListView {
      * @todo fetch this from https://raspberry-cook.fr
      * @param context
      */
-    public void loadPages(Context context){
-        final PageAdapter adapter = new PageAdapter(context, Page.all(context));
+    public void loadPages(Context context, Scrawler scrawler){
+        final PageAdapter adapter = new PageAdapter(context, scrawler.getPages(context));
         setAdapter(adapter);
     }
 }

@@ -39,9 +39,7 @@ public class Scrawler extends Record {
     }
 
     public static List<Scrawler> all(Context context) {
-        SQLiteDatabase database = getDatabase(context);
-        Cursor cursor = database.rawQuery("SELECT id, url FROM " + TABLE_NAME, null);
-
+        Cursor cursor = getDatabase(context).rawQuery("SELECT id, url FROM " + TABLE_NAME, null);
 
         List<Scrawler> scrawlers = new ArrayList<>();
         cursor.moveToFirst();
@@ -54,12 +52,33 @@ public class Scrawler extends Record {
     }
 
     public static Scrawler get(Context context, long id) {
-        SQLiteDatabase database = getDatabase(context);
-        String sql = String.format("SELECT id, url FROM %s WHERE id = ?", TABLE_NAME);
-        Cursor cursor = database.rawQuery(sql, new String[]{Long.toString(id)});
+        Cursor cursor = getDatabase(context).rawQuery(
+                String.format("SELECT id, url FROM %s WHERE id = ?", TABLE_NAME),
+                new String[]{Long.toString(id)}
+        );
         cursor.moveToFirst();
 
         return new Scrawler(cursor);
+    }
+
+    public List<Page> getPages(Context context) {
+        Cursor cursor = getDatabase(context).rawQuery(
+                String.format(
+                        "SELECT %s FROM %s WHERE scrawler_id = ?",
+                        Page.SELECT_FIELDS,
+                        Page.TABLE_NAME
+                ),
+                new String[]{Long.toString(id) }
+        );
+
+        List<Page> pages = new ArrayList<>();
+        cursor.moveToFirst();
+        while (!cursor.isAfterLast()) {
+            pages.add(new Page(cursor));
+            cursor.moveToNext();
+        }
+
+        return pages;
     }
 
     public long getId() {

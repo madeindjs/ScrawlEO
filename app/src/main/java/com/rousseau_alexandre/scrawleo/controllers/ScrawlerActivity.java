@@ -25,20 +25,19 @@ public class ScrawlerActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_scrawler);
 
-
         Intent intent = getIntent();
         scrawler = (Scrawler) intent.getSerializableExtra(EXTRA_RECIPE);
 
         loadScrawlerData();
 
         listPage = (ListViewPages) findViewById(R.id.listPage);
-        listPage.loadPages(ScrawlerActivity.this);
+        listPage.loadPages(ScrawlerActivity.this, scrawler);
 
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Page page = new Page("Added");
+                Page page = new Page(scrawler);
                 page.insert(ScrawlerActivity.this);
                 finish();
             }
