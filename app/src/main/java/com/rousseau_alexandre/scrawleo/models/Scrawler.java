@@ -81,6 +81,24 @@ public class Scrawler extends Record {
         return pages;
     }
 
+    public int countPages(Context context) {
+        Cursor cursor = getDatabase(context).rawQuery(
+                String.format("SELECT COUNT(*) FROM %s WHERE scrawler_id = ?", Page.TABLE_NAME),
+                new String[]{Long.toString(id)}
+        );
+        int count = 0;
+
+        if(null != cursor) {
+            if(cursor.getCount() > 0){
+                cursor.moveToFirst();
+                count = cursor.getInt(0);
+            }
+        }
+        cursor.close();
+
+        return count;
+    }
+
     public long getId() {
         return id;
     }

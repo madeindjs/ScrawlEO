@@ -8,13 +8,13 @@
     android:padding="20dp">
 
     <TextView
-        android:id="@+id/textView4"
+        android:id="@+id/nbPages"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="3 url scraped"
-        android:textAppearance="@android:style/TextAppearance.Material.Small"
         android:layout_above="@+id/imageView3"
-        android:layout_toEndOf="@+id/imageView4" />
+        android:layout_toEndOf="@+id/imageView4"
+        android:text="3"
+        android:textAppearance="@android:style/TextAppearance.Material.Medium" />
 
     <TextView
         android:id="@+id/nbScraped"
@@ -47,17 +47,17 @@
         android:layout_width="24dp"
         android:layout_height="24dp"
         android:layout_alignParentStart="true"
-        android:layout_below="@+id/progressBar"
+        android:layout_below="@+id/progressBarPages"
         app:srcCompat="@drawable/ic_material_link" />
 
     <ProgressBar
-        android:id="@+id/progressBar"
+        android:id="@+id/progressBarPages"
         style="?android:attr/progressBarStyleHorizontal"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:max="100"
-        android:progress="20"
+        android:layout_alignParentStart="true"
         android:layout_below="@+id/name"
-        android:layout_alignParentStart="true" />
+        android:max="1"
+        android:progress="1" />
 
 </RelativeLayout>

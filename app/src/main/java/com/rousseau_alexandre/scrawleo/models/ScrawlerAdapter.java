@@ -5,6 +5,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 
 
@@ -37,6 +38,8 @@ public class ScrawlerAdapter extends ArrayAdapter<Scrawler> {
         if(viewHolder == null){
             viewHolder = new RecipeViewHolder();
             viewHolder.name = (TextView) convertView.findViewById(R.id.name);
+            viewHolder.nbPages = (TextView) convertView.findViewById(R.id.nbPages);
+            viewHolder.progressBarPages = (ProgressBar) convertView.findViewById(R.id.progressBarPages);
             convertView.setTag(viewHolder);
         }
 
@@ -45,6 +48,9 @@ public class ScrawlerAdapter extends ArrayAdapter<Scrawler> {
 
         // il ne reste plus qu'à remplir notre vue
         viewHolder.name.setText(scrawler.url);
+        int count = scrawler.countPages(getContext());
+        viewHolder.nbPages.setText(Integer.toString(count));
+        viewHolder.progressBarPages.setMax(count);
 
         return convertView;
     }
@@ -57,5 +63,7 @@ public class ScrawlerAdapter extends ArrayAdapter<Scrawler> {
 
     private class RecipeViewHolder {
         public TextView name;
+        public TextView nbPages;
+        public ProgressBar progressBarPages;
     }
 }
