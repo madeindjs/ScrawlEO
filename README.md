@@ -1,6 +1,3 @@
-ScrawlEO
-========
+# ![ScrawlEO](https://raw.githubusercontent.com/madeindjs/ScrawlEO/master/app/src/main/res/mipmap-xxxhdpi/ic_launcher.png)
 
-![Icon](https://raw.githubusercontent.com/madeindjs/ScrawlEO/master/scrawleo.svg)
-
-http://androidsrc.net/android-web-crawler-example-multithreaded-implementation/
+Web Scrawler for Android.
