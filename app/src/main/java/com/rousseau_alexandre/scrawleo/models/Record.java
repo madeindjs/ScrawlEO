@@ -27,12 +27,14 @@ public abstract class Record implements Serializable {
      * @return `true` if success
      */
     public boolean save(Context context) {
-        int countRows =getDatabase(context).update(
+        SQLiteDatabase db = getDatabase(context);
+        int countRows = db.update(
                 getTableName(),
                 toContentValues(),
                 "id = ?",
                 new String[]{Long.toString(id)}
         );
+        db.close();
 
         return countRows == 1;
     }
@@ -44,9 +46,11 @@ public abstract class Record implements Serializable {
      * @return `true` if success
      */
     public boolean insert(Context context) {
-        long newId = getDatabase(context).insert(
+        SQLiteDatabase db = getDatabase(context);
+        long newId = db.insert(
                 getTableName(), null, toContentValues()
         );
+        db.close();
         if(newId == -1){
             return false;
         }else{
@@ -63,11 +67,13 @@ public abstract class Record implements Serializable {
      */
     public boolean delete(Context context) {
         System.out.println("Try to delete with id = " + id);
-        int count = getDatabase(context).delete(
+        SQLiteDatabase db = getDatabase(context);
+        int count = db.delete(
                 getTableName(),
                 "id = ?",
                 new String[]{Long.toString(id)}
         );
+        db.close();
 
         return count > 0;
     }

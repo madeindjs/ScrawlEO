@@ -71,6 +71,11 @@ public class Page extends Record {
         url = scrawler.url;
     }
 
+    public Page(Scrawler scrawler, String _url) {
+        scrawler_id = scrawler.id;
+        url = _url;
+    }
+
     public static List<Page> all(Context context) {
         SQLiteDatabase database = getDatabase(context);
         Cursor cursor = database.rawQuery(
@@ -84,6 +89,7 @@ public class Page extends Record {
             pages.add(new Page(cursor));
             cursor.moveToNext();
         }
+        database.close();
 
         return pages;
     }
