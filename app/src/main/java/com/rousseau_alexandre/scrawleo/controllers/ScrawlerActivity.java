@@ -12,6 +12,7 @@ import android.view.View;
 import com.rousseau_alexandre.scrawleo.R;
 import com.rousseau_alexandre.scrawleo.models.Page;
 import com.rousseau_alexandre.scrawleo.models.Scrawler;
+import com.rousseau_alexandre.scrawleo.services.WebCrawler;
 
 import static com.rousseau_alexandre.scrawleo.controllers.MainActivity.EXTRA_RECIPE;
 
@@ -37,12 +38,49 @@ public class ScrawlerActivity extends AppCompatActivity {
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                /*
                 Page page = new Page(scrawler);
                 page.insert(ScrawlerActivity.this);
+                */
+                WebCrawler crawler = new WebCrawler(ScrawlerActivity.this, scrawler, mCallback);
+                crawler.startCrawlerTask(scrawler.getUrl(), true);
                 finish();
             }
         });
     }
+
+    private WebCrawler.CrawlingCallback mCallback = new WebCrawler.CrawlingCallback() {
+
+        @Override
+        public void onPageCrawlingCompleted() {
+            /*
+            crawledUrlCount++;
+            progressText.post(new Runnable() {
+
+                @Override
+                public void run() {
+                    progressText.setText(crawledUrlCount
+                            + " pages crawled so far!!");
+
+                }
+            });
+            */
+        }
+
+        @Override
+        public void onPageCrawlingFailed(String Url, int errorCode) {
+            // TODO Auto-generated method stub
+
+        }
+
+        @Override
+        public void onCrawlingCompleted() {
+            // stopCrawling();
+        }
+
+    };
+
+
 
     /**
      * Set scrawler
