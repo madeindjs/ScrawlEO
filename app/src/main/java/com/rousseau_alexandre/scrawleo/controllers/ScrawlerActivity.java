@@ -43,7 +43,7 @@ public class ScrawlerActivity extends AppCompatActivity {
                 page.insert(ScrawlerActivity.this);
                 */
                 WebCrawler crawler = new WebCrawler(ScrawlerActivity.this, scrawler, mCallback);
-                crawler.startCrawlerTask(scrawler.getUrl(), true);
+                crawler.startCrawlerTask();
                 finish();
             }
         });

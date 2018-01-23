@@ -84,22 +84,24 @@ public class WebCrawler {
         lock = new Object();
     }
 
+
+    public void startCrawlerTask() {
+        crawledURL.clear();
+        uncrawledURL.clear();
+        mManager = new RunnableManager();
+
+        startCrawlerTask(scrawler.url);
+    }
+
     /**
      * API to add crawler runnable in ThreadPoolExecutor workQueue
      *
-     * @param Url Url to crawl
-     * @param isRootUrl
+     * @param url URL to crawl
      */
-    public void startCrawlerTask(String Url, boolean isRootUrl) {
-        // If it's root URl, we clear previous lists and DB table content
-        if (isRootUrl) {
-            crawledURL.clear();
-            uncrawledURL.clear();
-            mManager = new RunnableManager();
-        }
+    public void startCrawlerTask(String url) {
         // If ThreadPoolExecuter is not shutting down, add runnable to workQueue
         if (!mManager.isShuttingDown()) {
-            CrawlerRunnable mTask = new CrawlerRunnable(callback, scrawler.getUrl());
+            CrawlerRunnable mTask = new CrawlerRunnable(callback, url);
             mManager.addToCrawlingQueue(mTask);
         }
     }
@@ -214,7 +216,7 @@ public class WebCrawler {
                 if (uncrawledURL != null && uncrawledURL.size() > 0) {
                     int availableTasks = mManager.getUnusedPoolSize();
                     while (availableTasks > 0 && !uncrawledURL.isEmpty()) {
-                        startCrawlerTask(uncrawledURL.remove(), false);
+                        startCrawlerTask(uncrawledURL.remove());
                         availableTasks--;
                     }
                 }

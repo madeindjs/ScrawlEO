@@ -30,6 +30,16 @@ public class Scrawler extends Record {
     }
 
     /**
+     * @todo delete linked pages
+     * @param context
+     * @return
+     */
+    @Override
+    public boolean delete(Context context) {
+        return super.delete(context);
+    }
+
+    /**
      * Cursor obtened from this kind of query `SELECT id, url FROM scrawlers`
      * @param cursor
      */
