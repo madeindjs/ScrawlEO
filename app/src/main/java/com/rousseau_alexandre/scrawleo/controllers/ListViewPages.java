@@ -43,7 +43,7 @@ public class ListViewPages extends ListView {
      * @param context
      */
     public void loadPages(Context context, Scrawler scrawler){
-        final PageAdapter adapter = new PageAdapter(context, scrawler.getPages(context));
+        final PageAdapter adapter = new PageAdapter(context, scrawler);
         setAdapter(adapter);
     }
 }

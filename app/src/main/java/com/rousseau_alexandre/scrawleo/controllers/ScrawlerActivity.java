@@ -44,10 +44,7 @@ public class ScrawlerActivity extends AppCompatActivity {
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                /*
-                Page page = new Page(scrawler);
-                page.insert(ScrawlerActivity.this);
-                */
+                // @todo set FAV button as stop crawl
                 WebCrawler crawler = new WebCrawler(ScrawlerActivity.this, scrawler, mCallback);
                 crawler.startCrawlerTask();
                 progress.setVisibility(View.VISIBLE);

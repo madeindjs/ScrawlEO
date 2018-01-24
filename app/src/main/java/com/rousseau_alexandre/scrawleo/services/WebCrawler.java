@@ -132,20 +132,11 @@ public class WebCrawler {
             String pageContent = retreiveHtmlContent(scrawler.getUrl());
 
             if (!TextUtils.isEmpty(pageContent.toString())) {
-                Page page = new Page(scrawler, runnableUrl);
-                page.insert(context);
-                synchronized (lock) {
-                    crawledURL.add(runnableUrl);
-                }
-                mCallback.onPageCrawlingCompleted();
-            } else {
-                mCallback.onPageCrawlingFailed(runnableUrl, -1);
-            }
+                Document doc = Jsoup.parse(pageContent.toString());
+                Page page = new Page(scrawler, runnableUrl, doc);
 
-            if (!TextUtils.isEmpty(pageContent.toString())) {
                 // START
                 // JSoup Library used to filter urls from html body
-                Document doc = Jsoup.parse(pageContent.toString());
                 Elements links = doc.select("a[href]");
                 for (Element link : links) {
                     String extractedLink = link.attr("href");
@@ -157,7 +148,16 @@ public class WebCrawler {
 
                     }
                 }// End JSoup
+
+                page.insert(context);
+                synchronized (lock) {
+                    crawledURL.add(runnableUrl);
+                }
+                mCallback.onPageCrawlingCompleted();
+            } else {
+                mCallback.onPageCrawlingFailed(runnableUrl, -1);
             }
+
             // Send msg to handler that crawling for this url is finished
             // start more crawling tasks if queue is not empty
             mHandler.sendEmptyMessage(0);

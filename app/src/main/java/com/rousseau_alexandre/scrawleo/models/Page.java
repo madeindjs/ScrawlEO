@@ -5,6 +5,8 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 
+import org.jsoup.nodes.Document;
+
 import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.Date;
@@ -79,9 +81,10 @@ public class Page extends Record {
         url = scrawler.url;
     }
 
-    public Page(Scrawler scrawler, String _url) {
+    public Page(Scrawler scrawler, String _url, Document document) {
         scrawler_id = scrawler.id;
         url = _url;
+        title = document.title();
     }
 
     public static List<Page> all(Context context) {
@@ -109,6 +112,10 @@ public class Page extends Record {
 
     public String getUrl() {
         return url;
+    }
+
+    public String getTitle() {
+        return title;
     }
 
     protected ContentValues toContentValues() {

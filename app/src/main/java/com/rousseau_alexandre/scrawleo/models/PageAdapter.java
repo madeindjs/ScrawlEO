@@ -19,9 +19,12 @@ import java.util.List;
  */
 public class PageAdapter extends ArrayAdapter<Page> {
 
+    private Scrawler scrawler;
 
-    public PageAdapter(Context context, List<Page> pages) {
-        super(context, 0, pages);
+
+    public PageAdapter(Context context, Scrawler _scrawler) {
+        super(context, 0, _scrawler.getPages(context));
+        scrawler = _scrawler;
     }
 
     @Override
@@ -36,6 +39,7 @@ public class PageAdapter extends ArrayAdapter<Page> {
         if(viewHolder == null){
             viewHolder = new RecipeViewHolder();
             viewHolder.url = (TextView) convertView.findViewById(R.id.url);
+            viewHolder.title = (TextView) convertView.findViewById(R.id.titleValue);
             convertView.setTag(viewHolder);
         }
 
@@ -44,17 +48,19 @@ public class PageAdapter extends ArrayAdapter<Page> {
 
         // il ne reste plus qu'à remplir notre vue
         viewHolder.url.setText(page.getUrl());
+        viewHolder.title.setText(page.getTitle());
 
         return convertView;
     }
 
     public void reload() {
         clear();
-        addAll(Page.all(getContext()));
+        addAll(scrawler.getPages(getContext()));
         notifyDataSetChanged();
     }
 
     private class RecipeViewHolder {
         public TextView url;
+        public TextView title;
     }
 }
