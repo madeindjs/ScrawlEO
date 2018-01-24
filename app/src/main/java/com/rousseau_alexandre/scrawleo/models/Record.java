@@ -66,7 +66,6 @@ public abstract class Record implements Serializable {
      * @return `true` if success
      */
     public boolean delete(Context context) {
-        System.out.println("Try to delete with id = " + id);
         SQLiteDatabase db = getDatabase(context);
         int count = db.delete(
                 getTableName(),

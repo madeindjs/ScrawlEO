@@ -30,13 +30,24 @@ public class Scrawler extends Record {
     }
 
     /**
-     * @todo delete linked pages
+     * Remove crawler & it's associated pages
      * @param context
      * @return
      */
     @Override
     public boolean delete(Context context) {
-        return super.delete(context);
+        if(!super.delete(context)) {
+            return false;
+        }
+
+        SQLiteDatabase db = getDatabase(context);
+        int count = db.delete(
+                Page.TABLE_NAME, "scrawler_id = ?",
+                new String[]{Long.toString(id)}
+        );
+        db.close();
+
+        return count > 0;
     }
 
     /**
@@ -147,5 +158,8 @@ public class Scrawler extends Record {
     protected String getTableName() {
         return TABLE_NAME;
     }
+
+
+
 
 }
