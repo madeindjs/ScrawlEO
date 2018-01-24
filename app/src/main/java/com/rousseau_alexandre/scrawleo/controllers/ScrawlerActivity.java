@@ -8,10 +8,13 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.ProgressBar;
 
 import com.rousseau_alexandre.scrawleo.R;
 import com.rousseau_alexandre.scrawleo.models.Page;
+import com.rousseau_alexandre.scrawleo.models.PageAdapter;
 import com.rousseau_alexandre.scrawleo.models.Scrawler;
+import com.rousseau_alexandre.scrawleo.models.ScrawlerAdapter;
 import com.rousseau_alexandre.scrawleo.services.WebCrawler;
 
 import static com.rousseau_alexandre.scrawleo.controllers.MainActivity.EXTRA_RECIPE;
@@ -20,11 +23,14 @@ public class ScrawlerActivity extends AppCompatActivity {
 
     private ListViewPages listPage;
     private Scrawler scrawler;
+    private ProgressBar progress;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_scrawler);
+
+        progress = (ProgressBar) findViewById(R.id.crawlerProgress);
 
         Intent intent = getIntent();
         scrawler = (Scrawler) intent.getSerializableExtra(EXTRA_RECIPE);
@@ -44,7 +50,7 @@ public class ScrawlerActivity extends AppCompatActivity {
                 */
                 WebCrawler crawler = new WebCrawler(ScrawlerActivity.this, scrawler, mCallback);
                 crawler.startCrawlerTask();
-                finish();
+                progress.setVisibility(View.VISIBLE);
             }
         });
     }
@@ -53,18 +59,10 @@ public class ScrawlerActivity extends AppCompatActivity {
 
         @Override
         public void onPageCrawlingCompleted() {
-            /*
-            crawledUrlCount++;
-            progressText.post(new Runnable() {
-
-                @Override
-                public void run() {
-                    progressText.setText(crawledUrlCount
-                            + " pages crawled so far!!");
-
-                }
-            });
-            */
+            // android.view.ViewRootImpl$CalledFromWrongThreadException:
+            // Only the original thread that created a view hierarchy can touch its views.
+            // PageAdapter adapter = (PageAdapter) listPage.getAdapter();
+            // adapter.reload();
         }
 
         @Override
@@ -75,7 +73,9 @@ public class ScrawlerActivity extends AppCompatActivity {
 
         @Override
         public void onCrawlingCompleted() {
-            // stopCrawling();
+            progress.setVisibility(View.INVISIBLE);
+            PageAdapter adapter = (PageAdapter) listPage.getAdapter();
+            adapter.reload();
         }
 
     };
