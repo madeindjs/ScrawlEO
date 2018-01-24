@@ -5,7 +5,9 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 
+import java.sql.Timestamp;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -22,7 +24,9 @@ public class Page extends Record {
             + "description TEXT,"
             + "keywords TEXT,"
             + "status INTEGER,"
-            + "h1 TEXT );";
+            + "h1 TEXT,"
+            + "inserted_at INTEGER,"
+            + "UNIQUE(scrawler_id, url) ON CONFLICT REPLACE);";
     public static final String SELECT_FIELDS = "id, scrawler_id, url, title, description, keywords, status, h1";
 
     protected long scrawler_id;
@@ -50,6 +54,10 @@ public class Page extends Record {
      * HTTP status code
      */
     private int status;
+    /**
+     * Timestamp of insertion
+     */
+    private Date inserted_at;
 
     /**
      * Cursor obtened from this kind of query `SELECT id, url FROM scrawlers`
@@ -104,6 +112,10 @@ public class Page extends Record {
     }
 
     protected ContentValues toContentValues() {
+        Date date = new Date();
+        Timestamp timestamp = new Timestamp(date.getTime());
+        inserted_at = date;
+
         ContentValues values = new ContentValues();
         values.put("url", url);
         values.put("scrawler_id", scrawler_id);
@@ -112,6 +124,7 @@ public class Page extends Record {
         values.put("description", description);
         values.put("keywords", keywords);
         values.put("status", status);
+        values.put("inserted_at", timestamp.getTime());
         return values;
     }
 
