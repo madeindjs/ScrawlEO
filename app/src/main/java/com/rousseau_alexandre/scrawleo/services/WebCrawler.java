@@ -149,8 +149,8 @@ public class WebCrawler {
                     }
                 }// End JSoup
 
-                page.insert(context);
                 synchronized (lock) {
+                    page.insert(context);
                     crawledURL.add(runnableUrl);
                 }
                 mCallback.onPageCrawlingCompleted();

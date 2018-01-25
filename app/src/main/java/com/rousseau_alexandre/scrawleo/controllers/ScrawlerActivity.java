@@ -8,6 +8,7 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ProgressBar;
 
 import com.rousseau_alexandre.scrawleo.R;
@@ -25,6 +26,8 @@ public class ScrawlerActivity extends AppCompatActivity {
     private Scrawler scrawler;
     private ProgressBar progress;
 
+    public static final String EXTRA_PAGE = "com.rousseau_alexandre.scrawleo.PAGE";
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -39,6 +42,16 @@ public class ScrawlerActivity extends AppCompatActivity {
 
         listPage = (ListViewPages) findViewById(R.id.listPage);
         listPage.loadPages(ScrawlerActivity.this, scrawler);
+        listPage.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                Page page = (Page) listPage.getItemAtPosition(position);
+                Intent intent = new Intent(ScrawlerActivity.this, PageActivity.class);
+                intent.putExtra(EXTRA_PAGE, page);
+                startActivity(intent);
+            }
+        });
 
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {

@@ -12,31 +12,24 @@
         android:id="@+id/url"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
         android:textAppearance="@android:style/TextAppearance.Material.Medium"
-        tools:text="/tutorial/2017/11/28/rust.html"
+        app:layout_constraintBottom_toBottomOf="@+id/statusPageText"
+        app:layout_constraintStart_toEndOf="@+id/statusPageText"
+        app:layout_constraintTop_toTopOf="@+id/statusPageText"
+        tools:text="/tutorial/2017/11/28/rust.html" />
+
+    <TextView
+        android:id="@+id/statusPageText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:text="⬤"
+        android:textSize="36sp"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
-
-    <TextView
-        android:id="@+id/titleLabel"
-        android:layout_width="wrap_content"
-        android:layout_height="18dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-        android:text="TextView"
-        android:textColor="@color/colorPrimary"
-        app:layout_constraintStart_toStartOf="@+id/url"
-        app:layout_constraintTop_toBottomOf="@+id/url"
-        tools:text="@string/page_title" />
-
-    <TextView
-        android:id="@+id/titleValue"
-        android:layout_width="wrap_content"
-        android:layout_height="18dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-        android:text="TextView"
-        app:layout_constraintStart_toEndOf="@+id/titleLabel"
-        app:layout_constraintTop_toBottomOf="@+id/url" />
+        tools:text="⬤" />
 
 </android.support.constraint.ConstraintLayout>

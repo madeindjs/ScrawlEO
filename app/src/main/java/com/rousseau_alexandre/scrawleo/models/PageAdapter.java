@@ -1,6 +1,7 @@
 package com.rousseau_alexandre.scrawleo.models;
 
 import android.content.Context;
+import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -39,7 +40,7 @@ public class PageAdapter extends ArrayAdapter<Page> {
         if(viewHolder == null){
             viewHolder = new RecipeViewHolder();
             viewHolder.url = (TextView) convertView.findViewById(R.id.url);
-            viewHolder.title = (TextView) convertView.findViewById(R.id.titleValue);
+            viewHolder.status = (TextView) convertView.findViewById(R.id.statusPageText);
             convertView.setTag(viewHolder);
         }
 
@@ -48,7 +49,7 @@ public class PageAdapter extends ArrayAdapter<Page> {
 
         // il ne reste plus qu'à remplir notre vue
         viewHolder.url.setText(page.getUrl());
-        viewHolder.title.setText(page.getTitle());
+        viewHolder.status.setTextColor(Color.GREEN);
 
         return convertView;
     }
@@ -61,6 +62,6 @@ public class PageAdapter extends ArrayAdapter<Page> {
 
     private class RecipeViewHolder {
         public TextView url;
-        public TextView title;
+        public TextView status;
     }
 }

@@ -12,5 +12,6 @@
     <string name="title_activity_edit_scrawler">Edit Scrawler</string>
 
     <string name="page_title">Title</string>
+    <string name="title_activity_page">Page</string>
 
 </resources>
