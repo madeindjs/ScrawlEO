@@ -10,21 +10,53 @@
     <string name="title_activity_scrapers">Scrapers</string>
     <string name="title_activity_new_scrawler">Create new Scrawler</string>
     <string name="title_activity_edit_scrawler">Edit Scrawler</string>
-
-    <string name="page_title">Title</string>
     <string name="title_activity_page">Page</string>
 
     <!-- from https://seositecheckup.com/seo-audit/java.meritcampus.com -->
-
-    <string name="page_meta_title">Title</string>
-    <string name="page_meta_title_content">The meta title of your page has a length of 87 characters. Most search engines will truncate meta titles to 70 characters. </string>
-    <string name="page_meta_title_help">Your page\'s meta title is an HTML tag that defines the title of your page. This tag displays your page title in search engine results, at the top of a user\'s browser, and also when your page is bookmarked in a list of favorites. A concise, descriptive title tag that accurately reflects your page's topic is important for ranking well in search engines.</string>
-
-    <string name="page_meta_description">Description</string>
-    <string name="page_meta_description_help">Your page\'s meta description is an HTML tag that is intended to provide a short and accurate summary of your page. Search engines use meta descriptions to help identify the a page\'s topic - they may also use meta descriptions by displaying them directly in search engine results. Accurate and inviting meta descriptions can help boost both your search engine rankings and a user's likelihood of clicking through to your page.</string>
-    <string name="page_meta_description_content">The meta description of your page has a length of 156 characters. Most search engines will truncate meta descriptions to 160 characters. </string>
-
-    <string name="page_h1">h1</string>
-    <string name="pahe_h1_help">Check if any H1 headings are used in your page. H1 headings are HTML tags that are not visible to users, but can help clarify the overall theme or purpose of your page to search engines. The H1 tag represents the most important heading on your page, e.g., the title of the page or blog post.  </string>
-    <string name="page_h1_content">Your page contains H1 headings. Their contents are listed below: </string>
+    <string name="page_title">Meta Title</string>
+    <string name="page_title_help">Your page\'s meta title is an HTML tag that defines the title of your page. This tag displays your page title in search engine results, at the top of a user\'s browser, and also when your page is bookmarked in a list of favorites. A concise, descriptive title tag that accurately reflects your page\'s topic is important for ranking well in search engine</string>
+    <string name="page_description">Meta Description</string>
+    <string name="page_description_help">Your page\'s meta description is an HTML tag that is intended to provide a short and accurate summary of your page. Search engines use meta descriptions to help identify the a page\'s topic - they may also use meta descriptions by displaying them directly in search engine results. Accurate and inviting meta descriptions can help boost both your search engine rankings and a user\'s likelihood of clicking through to your page.</string>
+    <string name="page__keywords">Keyword Usage</string>
+    <string name="page__keywords_help">This describes if your most common keywords are used in your page title and meta-description.</string>
+    <string name="page_h1">h1 Headings Status</string>
+    <string name="page_h1_help">Check if any H1 headings are used in your page. H1 headings are HTML tags that are not visible to users, but can help clarify the overall theme or purpose of your page to search engines. The H1 tag represents the most important heading on your page, e.g., the title of the page or blog post.  </string>
+    <string name="page_h2">h2 Headings Status</string>
+    <string name="page_h2_help">Check if any H2 headings are used in your page. H2 headings are HTML tags that are not visible to users, but can help clarify the overall theme or purpose of your page to search engines. The H2 tag represents the second most important headings on your page, e.g., the subheadings.</string>
+    <string name="page_robot">Robots.txt</string>
+    <string name="page_robot_help">Check if your website is using a robots.txt file. When search engine robots crawl a website, they typically first access a site\'s robots.txt file. Robots.txt tells Googlebot and other crawlers what is and is not allowed to be crawled on your site.</string>
+    <string name="page_sitemap">Sitemap</string>
+    <string name="page_sitemap_help">Check if the website has a sitemap. A sitemap is important as it lists all the web pages of the site and let search engine crawlers to crawl the website more intelligently. A sitemap also provides valuable metadata for each webpage.</string>
+    <string name="page_broken_links">Broken Links</string>
+    <string name="page_broken_links_help">Check if your website has any broken or dead links. This tool scans your website to locate both broken internal links (pointing within your website) and external broken links (pointing outside of your website). Broken links negatively impact the user experience and damage your website’s overall ranking with search engines.</string>
+    <string name="page_img_alt">Image Alt</string>
+    <string name="page_img_alt_help">Check if images on your webpage are using alt attributes. If an image cannot be displayed (e.g., due to broken image source, slow internet connection, etc), the alt attribute provides alternative information. Using relevant keywords and text in the alt attribute can help both users and search engines better interpret the subject of an image.</string>
+    <string name="page_css_inline">Inline CSS</string>
+    <string name="page_css_inline_help">Your webpage is using 68 inline CSS styles! </string>
+    <string name="page_favicon">Favicon</string>
+    <string name="page_favicon_help">Check if your site is using and correctly implementing a favicon. Favicons are small icons that appear in your browser\'s URL navigation bar. They are also saved next to your URL\'s title when your page is bookmarked. This helps brand your site and make it easy for users to navigate to your site among a list of bookmarks.</string>
+    <string name="page_html_size">HTML Page Size</string>
+    <string name="page_html_size_help">Check your page\'s HTML size. HTML size is the size of all the HTML code on your web page - this size does not include images, external javascripts or external CSS files.</string>
+    <string name="page_html_gzip">HTML Compression/GZIP</string>
+    <string name="page_html_gzip_help">Congratulations! Your page is successfully compressed using gzip compression on your code.</string>
+    <string name="page_speed">Site Loading Speed</string>
+    <string name="page_speed_help">Your site loading time is around 1.439 seconds and this is under the average loading speed which is 5 seconds</string>
+    <string name="page_queries">Page Objects</string>
+    <string name="page_queries_help">Check if all the objects requested by this webpage can be retrieved. If they are not retrievable, your page may display incorrectly, leading to a bad user experience and lower search engine rankings.</string>
+    <string name="page_server_cache">Page Cache (Server Side Caching)</string>
+    <string name="page_server_cache_help">Check if your page is serving cached pages. A page cache saves dynamically generated pages and serves the pre-generated (cached) page to reduce server load and site loading time (by avoiding the re-loading and execution of PHP scripts). Common caching methods are ZenCache and WP Rocket.</string>
+    <string name="page_img_expires">Image Expires Tag </string>
+    <string name="page_img_expires_help">Checks if your page is using an image expires tag, which specifies a future expiration date for your images. Users\' browsers will see this tag and cache the image in their browser until the specified date (so that it does not keep re-fetching the unchanged image from your server). This speeds up your site the next time returning visitors arrive at your site and require the same image.</string>
+    <string name="page_js_minification">JS Minification</string>
+    <string name="page_js_minification_help">Checks if any external javascript files used in your page are minified. Minified files reduce page size and overall load time.</string>
+    <string name="page_css_minification">CSS Minification</string>
+    <string name="page_css_minification_help">Checks if any CSS files used in your page are minified. Minified files reduce page size and overall load time.</string>
+    <string name="page_table_nested">Nested Tables</string>
+    <string name="page_table_nested_help">Check if this site contains nested tables. A nested table is an HTML table containing another table inside it. Use of nested tables can slow down page rendering in the user\'s browser.</string>
+    <string name="page_doctype">Doctype</string>
+    <string name="page_doctype_help">Check for doctype declaration. A document type declaration, or DOCTYPE, defines which version of (X)HTML your webpage is using. Proper doctype declaration assists with proper page rendering and functioning of web documents in compliant browsers.</string>
+    <string name="page_media_query">Media Query Responsive</string>
+    <string name="page_media_query_help">Check if your page implements responsive design functionalities using the media query technique. The \'@media\' rule allows different style rules for screen sizes. Media query techniques allow different presentation and content to be served depending on the output device, helping ensure that your website renders optimally on all devices and platforms.</string>
+    <string name="page_jsonld">Microdata Schema</string>
+    <string name="page_jsonld_help">Check if your website uses HTML Microdata specifications (or structured data markup). Search engines use microdata to better understand the content of your site and create rich snippets in search results (which helps increase click-through rate to your site).</string>
 </resources>

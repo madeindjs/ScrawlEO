@@ -15,11 +15,6 @@ import java.util.List;
  */
 public class ListViewScrawlers extends ListView {
 
-    /**
-     * List of all scrawlers
-     */
-    private List<Scrawler> scrawlers;
-
     public ListViewScrawlers(Context context){
         super(context);
     }
