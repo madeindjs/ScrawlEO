@@ -129,30 +129,25 @@ public class WebCrawler {
 
         @Override
         public void run() {
-            String pageContent = retreiveHtmlContent(scrawler.getUrl());
+            String pageContent = retreiveHtmlContent(runnableUrl);
 
             if (!TextUtils.isEmpty(pageContent.toString())) {
-                Document doc = Jsoup.parse(pageContent.toString());
-                Page page = new Page(scrawler, runnableUrl, doc);
-
-                // START
-                // JSoup Library used to filter urls from html body
-                Elements links = doc.select("a[href]");
-                for (Element link : links) {
-                    String extractedLink = link.attr("href");
-                    if (!TextUtils.isEmpty(extractedLink)) {
-                        synchronized (lock) {
-                            if (!crawledURL.contains(extractedLink))
-                                uncrawledURL.add(extractedLink);
-                        }
-
-                    }
-                }// End JSoup
-
+                    System.out.print(pageContent);
                 synchronized (lock) {
+
+                    Document doc = Jsoup.parse(pageContent.toString());
+                    Page page = new Page(scrawler, runnableUrl, doc);
+
+                    // JSoup Library used to filter urls from html body
+                    Elements links = doc.select("a[href]");
+                    for (Element link : links) {
+                        String extractedLink = link.attr("href");
+                        addUrl(extractedLink);
+                    }// End JSoup
                     page.insert(context);
                     crawledURL.add(runnableUrl);
                 }
+
                 mCallback.onPageCrawlingCompleted();
             } else {
                 mCallback.onPageCrawlingFailed(runnableUrl, -1);
@@ -161,7 +156,14 @@ public class WebCrawler {
             // Send msg to handler that crawling for this url is finished
             // start more crawling tasks if queue is not empty
             mHandler.sendEmptyMessage(0);
+        }
 
+        private boolean addUrl(String url) {
+            if (!TextUtils.isEmpty(url) &&  url.contains(scrawler.getUrl()) && !crawledURL.contains(url)){
+                uncrawledURL.add(url);
+                return true;
+            }
+            return false;
         }
 
         private String retreiveHtmlContent(String Url) {

@@ -85,6 +85,9 @@ public class Page extends Record {
         scrawler_id = scrawler.id;
         url = _url;
         title = document.title();
+        h1 = document.select("h1").text();
+        description = document.select("meta[name=\"description\"]").text();
+        keywords = document.select("meta[name=\"keywords\"]").text();
     }
 
     public static List<Page> all(Context context) {
@@ -105,7 +108,6 @@ public class Page extends Record {
         return pages;
     }
 
-
     public void setScrawler(Scrawler scrawler) {
         scrawler_id = scrawler.id;
     }
@@ -116,6 +118,26 @@ public class Page extends Record {
 
     public String getTitle() {
         return title;
+    }
+
+    public String getH1() {
+        return h1;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public String getKeywords() {
+        return keywords;
+    }
+
+    public int getStatus() {
+        return status;
+    }
+
+    public Date getInserted_at() {
+        return inserted_at;
     }
 
     protected ContentValues toContentValues() {

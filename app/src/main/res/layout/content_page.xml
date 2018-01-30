@@ -100,7 +100,7 @@
                 app:layout_constraintStart_toEndOf="@+id/pageDescriptionText" />
 
             <TextView
-                android:id="@+id/textView8"
+                android:id="@+id/pageKeywordsText"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="8dp"
@@ -111,17 +111,17 @@
                 app:layout_constraintTop_toBottomOf="@+id/pageDescriptionHelpText" />
 
             <TextView
-                android:id="@+id/textView9"
+                android:id="@+id/pageKeywordsValue"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="8dp"
                 android:text="TextView"
                 android:textColor="@color/colorAccent"
-                app:layout_constraintBottom_toBottomOf="@+id/textView8"
-                app:layout_constraintStart_toEndOf="@+id/textView8" />
+                app:layout_constraintBottom_toBottomOf="@+id/pageKeywordsText"
+                app:layout_constraintStart_toEndOf="@+id/pageKeywordsText" />
 
             <TextView
-                android:id="@+id/textView10"
+                android:id="@+id/pageKeywordsHelpText"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="8dp"
@@ -130,7 +130,7 @@
                 android:text="@string/page__keywords_help"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/textView8" />
+                app:layout_constraintTop_toBottomOf="@+id/pageKeywordsText" />
 
         </android.support.constraint.ConstraintLayout>
 
