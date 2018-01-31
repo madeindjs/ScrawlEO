@@ -85,7 +85,7 @@ public class Page extends Record {
         scrawler_id = scrawler.id;
         url = _url;
         title = document.title();
-        h1 = document.select("h1").attr("content");
+        h1 = document.select("h1").text();
         description = document.select("meta[name=\"description\"]").attr("content");
         keywords = document.select("meta[name=\"keywords\"]").attr("content");
     }

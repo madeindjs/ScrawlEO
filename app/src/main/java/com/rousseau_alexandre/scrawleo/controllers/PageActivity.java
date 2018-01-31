@@ -7,6 +7,7 @@ import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.rousseau_alexandre.scrawleo.R;
@@ -33,7 +34,20 @@ public class PageActivity extends AppCompatActivity {
         setSupportActionBar(toolbar);
 
         // set values to view
-        ((TextView) findViewById(R.id.pageTitleValue)).setText(page.getTitle());
+
+        // title https://moz.com/learn/seo/title-tag
+        final String pageTitle = page.getTitle();
+        final int pageTtitleSize = pageTitle.length();
+        ((TextView) findViewById(R.id.pageTitleValue)).setText(pageTitle);
+        int titleScore = 100;
+        if(pageTtitleSize > 60 || pageTtitleSize < 50) {
+            titleScore = titleScore - 30;
+        }else if(pageTtitleSize == 0) {
+            titleScore = 0;
+        }
+        ((ProgressBar) findViewById(R.id.pageTitleProgress)).setProgress(titleScore);
+
+
         ((TextView) findViewById(R.id.pageDescriptionValue)).setText(page.getDescription());
         ((TextView) findViewById(R.id.pageKeywordsValue)).setText(page.getKeywords());
 

@@ -19,16 +19,22 @@
         <TableLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:shrinkColumns="*">
+            android:shrinkColumns="2">
 
             <!-- title -->
             <TableRow>
+
+                <ProgressBar
+                    android:id="@+id/pageTitleProgress"
+                    style="?android:attr/progressBarStyle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:max="100" />
 
                 <TextView
                     android:id="@+id/pageTitleText"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:layout_marginStart="8dp"
                     android:text="@string/page_title"
                     android:textAppearance="@android:style/TextAppearance.Material.Subhead" />
 
@@ -36,18 +42,23 @@
                     android:id="@+id/pageTitleValue"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:layout_marginStart="8dp"
                     android:text="TextView" />
             </TableRow>
 
             <!-- Description -->
             <TableRow>
 
+                <ProgressBar
+                    android:id="@+id/pageDescriptionProgress"
+                    style="?android:attr/progressBarStyle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:max="100" />
+
                 <TextView
                     android:id="@+id/pageDescriptionText"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:layout_marginStart="8dp"
                     android:text="@string/page_description"
                     android:textAppearance="@android:style/TextAppearance.Material.Subhead" />
 
@@ -55,13 +66,19 @@
                     android:id="@+id/pageDescriptionValue"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:layout_marginStart="8dp"
                     android:text="TextView"
                     tools:text="@string/lorem" />
             </TableRow>
 
-            <!-- Description -->
+            <!-- keywords -->
             <TableRow>
+
+                <ProgressBar
+                    android:id="@+id/pageKeywordsProgress"
+                    style="?android:attr/progressBarStyle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:max="100" />
 
                 <TextView
                     android:id="@+id/pageKeywordsText"
