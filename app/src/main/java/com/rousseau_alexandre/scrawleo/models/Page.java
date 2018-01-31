@@ -85,9 +85,9 @@ public class Page extends Record {
         scrawler_id = scrawler.id;
         url = _url;
         title = document.title();
-        h1 = document.select("h1").text();
-        description = document.select("meta[name=\"description\"]").text();
-        keywords = document.select("meta[name=\"keywords\"]").text();
+        h1 = document.select("h1").attr("content");
+        description = document.select("meta[name=\"description\"]").attr("content");
+        keywords = document.select("meta[name=\"keywords\"]").attr("content");
     }
 
     public static List<Page> all(Context context) {

@@ -132,7 +132,6 @@ public class WebCrawler {
             String pageContent = retreiveHtmlContent(runnableUrl);
 
             if (!TextUtils.isEmpty(pageContent.toString())) {
-                    System.out.print(pageContent);
                 synchronized (lock) {
 
                     Document doc = Jsoup.parse(pageContent.toString());
@@ -159,7 +158,22 @@ public class WebCrawler {
         }
 
         private boolean addUrl(String url) {
-            if (!TextUtils.isEmpty(url) &&  url.contains(scrawler.getUrl()) && !crawledURL.contains(url)){
+            // verify that text is not empty or not already crawled
+            if (TextUtils.isEmpty(url) || crawledURL.contains(url)) {
+                return false;
+            }
+
+            String domain = scrawler.getUrl();
+
+            // not overflow this domain
+            if(url.startsWith("/")){
+                StringBuilder buildUrl = new StringBuilder(domain);
+                buildUrl.append(url);
+                uncrawledURL.add(buildUrl.toString());
+                return true;
+            }
+
+            if (url.contains(domain)) {
                 uncrawledURL.add(url);
                 return true;
             }
