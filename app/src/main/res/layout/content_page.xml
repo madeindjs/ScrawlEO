@@ -4,7 +4,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
+    android:layout_height="match_parent"
     android:scrollbars="vertical"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
     tools:showIn="@layout/activity_page">
@@ -16,126 +16,72 @@
         tools:layout_editor_absoluteX="0dp"
         tools:layout_editor_absoluteY="0dp">
 
-        <android.support.constraint.ConstraintLayout
+        <TableLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="match_parent"
+            android:shrinkColumns="*">
+
+            <!-- title -->
+            <TableRow>
+
+                <TextView
+                    android:id="@+id/pageTitleText"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginStart="8dp"
+                    android:text="@string/page_title"
+                    android:textAppearance="@android:style/TextAppearance.Material.Subhead" />
+
+                <TextView
+                    android:id="@+id/pageTitleValue"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginStart="8dp"
+                    android:text="TextView" />
+            </TableRow>
+
+            <!-- Description -->
+            <TableRow>
+
+                <TextView
+                    android:id="@+id/pageDescriptionText"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginStart="8dp"
+                    android:text="@string/page_description"
+                    android:textAppearance="@android:style/TextAppearance.Material.Subhead" />
+
+                <TextView
+                    android:id="@+id/pageDescriptionValue"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginStart="8dp"
+                    android:text="TextView"
+                    tools:text="@string/lorem" />
+            </TableRow>
+
+            <!-- Description -->
+            <TableRow>
+
+                <TextView
+                    android:id="@+id/pageKeywordsText"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:text="@string/page__keywords"
+                    android:textAppearance="@android:style/TextAppearance.Material.Subhead" />
+
+                <TextView
+                    android:id="@+id/pageKeywordsValue"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:text="TextView" />
+            </TableRow>
 
 
-            <TextView
-                android:id="@+id/pageTitleText"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="8dp"
-                android:text="@string/page_title"
-                android:textAppearance="@android:style/TextAppearance.Material.Subhead"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/progressBar" />
-
-            <ProgressBar
-                android:id="@+id/progressBar"
-                style="?android:attr/progressBarStyle"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginEnd="8dp"
-                android:layout_marginStart="8dp"
-                android:layout_marginTop="8dp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
-
-            <TextView
-                android:id="@+id/pageTitleHelpText"
-                android:layout_width="0dp"
-                android:layout_height="70dp"
-                android:layout_marginEnd="8dp"
-                android:layout_marginStart="8dp"
-                android:layout_marginTop="8dp"
-                android:text="@string/page_title_help"
-                android:textAppearance="@android:style/TextAppearance.Material.Small"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/pageTitleText" />
-
-            <TextView
-                android:id="@+id/pageTitleValue"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="8dp"
-                android:text="TextView"
-                android:textColor="@color/colorAccent"
-                app:layout_constraintBottom_toBottomOf="@+id/pageTitleText"
-                app:layout_constraintStart_toEndOf="@+id/pageTitleText" />
-
-            <TextView
-                android:id="@+id/pageDescriptionText"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="8dp"
-                android:layout_marginTop="24dp"
-                android:text="@string/page_description"
-                android:textAppearance="@android:style/TextAppearance.Material.Subhead"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/pageTitleHelpText" />
-
-            <TextView
-                android:id="@+id/pageDescriptionHelpText"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginEnd="8dp"
-                android:layout_marginStart="8dp"
-                android:layout_marginTop="8dp"
-                android:text="@string/page_description_help"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/pageDescriptionText" />
-
-            <TextView
-                android:id="@+id/pageDescriptionValue"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="8dp"
-                android:text="TextView"
-                android:textColor="@color/colorAccent"
-                app:layout_constraintBottom_toBottomOf="@+id/pageDescriptionText"
-                app:layout_constraintStart_toEndOf="@+id/pageDescriptionText" />
-
-            <TextView
-                android:id="@+id/pageKeywordsText"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="8dp"
-                android:layout_marginTop="24dp"
-                android:text="@string/page__keywords"
-                android:textAppearance="@android:style/TextAppearance.Material.Subhead"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/pageDescriptionHelpText" />
-
-            <TextView
-                android:id="@+id/pageKeywordsValue"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="8dp"
-                android:text="TextView"
-                android:textColor="@color/colorAccent"
-                app:layout_constraintBottom_toBottomOf="@+id/pageKeywordsText"
-                app:layout_constraintStart_toEndOf="@+id/pageKeywordsText" />
-
-            <TextView
-                android:id="@+id/pageKeywordsHelpText"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginEnd="8dp"
-                android:layout_marginStart="8dp"
-                android:layout_marginTop="8dp"
-                android:text="@string/page__keywords_help"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/pageKeywordsText" />
-
-        </android.support.constraint.ConstraintLayout>
+        </TableLayout>
 
     </ScrollView>
-
-
 
 </android.support.constraint.ConstraintLayout>

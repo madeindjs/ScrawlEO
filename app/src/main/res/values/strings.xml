@@ -12,6 +12,8 @@
     <string name="title_activity_edit_scrawler">Edit Scrawler</string>
     <string name="title_activity_page">Page</string>
 
+    <string name="lorem">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</string>
+
     <!-- from https://seositecheckup.com/seo-audit/java.meritcampus.com -->
     <string name="page_title">Meta Title</string>
     <string name="page_title_help">Your page\'s meta title is an HTML tag that defines the title of your page. This tag displays your page title in search engine results, at the top of a user\'s browser, and also when your page is bookmarked in a list of favorites. A concise, descriptive title tag that accurately reflects your page\'s topic is important for ranking well in search engine</string>
