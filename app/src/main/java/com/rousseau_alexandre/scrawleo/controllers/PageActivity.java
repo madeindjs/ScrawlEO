@@ -33,23 +33,69 @@ public class PageActivity extends AppCompatActivity {
         toolbar.setTitle(page.getUrl());
         setSupportActionBar(toolbar);
 
-        // set values to view
 
-        // title https://moz.com/learn/seo/title-tag
-        final String pageTitle = page.getTitle();
-        final int pageTtitleSize = pageTitle.length();
-        ((TextView) findViewById(R.id.pageTitleValue)).setText(pageTitle);
-        int titleScore = 100;
-        if(pageTtitleSize > 60 || pageTtitleSize < 50) {
-            titleScore = titleScore - 30;
-        }else if(pageTtitleSize == 0) {
-            titleScore = 0;
+        // set title
+        View pageTitle = findViewById(R.id.pageTitle);
+        ((TextView) pageTitle.findViewById(R.id.propertyTitleText)).setText("Title");
+        ((TextView) pageTitle.findViewById(R.id.propertyTitleValue)).setText(page.getTitle());
+        // check errors
+        StringBuilder errorsTitleText = new StringBuilder();
+        int titleSize = page.getTitle().length();
+        if (titleSize == 0) {
+            errorsTitleText.append("no title provided");
+        } else if (titleSize > 60) {
+            errorsTitleText.append("title too long (longer than 60 char)");
+        } else if (titleSize < 50) {
+            errorsTitleText.append("title too short (shorter than 50 char)");
         }
-        ((ProgressBar) findViewById(R.id.pageTitleProgress)).setProgress(titleScore);
+        // TODO: Check duplicates
+        if (errorsTitleText.length() > 0) {
+            TextView errors = (TextView) pageTitle.findViewById(R.id.propertyErrorsText);
+            errors.setText(errorsTitleText.toString());
+            errors.setVisibility(View.VISIBLE);
+        }
 
 
-        ((TextView) findViewById(R.id.pageDescriptionValue)).setText(page.getDescription());
-        ((TextView) findViewById(R.id.pageKeywordsValue)).setText(page.getKeywords());
+        // h1
+        View pageH1 = findViewById(R.id.pageH1);
+        ((TextView) pageH1.findViewById(R.id.propertyTitleText)).setText("H1");
+        ((TextView) pageH1.findViewById(R.id.propertyTitleValue)).setText(page.getH1());
+        // TODO: Check duplicates
+        if(page.getH1().length() == 0) {
+            TextView errors = (TextView) pageH1.findViewById(R.id.propertyErrorsText);
+            errors.setText("No H1 found");
+            errors.setVisibility(View.VISIBLE);
+        }
+
+        // description
+        View pageDescription = findViewById(R.id.pageDescription);
+        ((TextView) pageDescription.findViewById(R.id.propertyTitleText)).setText("Description");
+        ((TextView) pageDescription.findViewById(R.id.propertyTitleValue)).setText(page.getDescription());
+        StringBuilder errorsDescriptionText = new StringBuilder();
+        int descriptionSize = page.getDescription().length();
+        if (descriptionSize == 0) {
+            errorsDescriptionText.append("no description provided");
+        } else if (descriptionSize > 320) {
+            errorsDescriptionText.append("description too long (longer than 320 char)");
+        } else if (titleSize < 230) {
+            errorsDescriptionText.append("description too short (shorter than 230 char)");
+        }
+        if (errorsDescriptionText.length() > 0) {
+            TextView errors = (TextView) pageDescription.findViewById(R.id.propertyErrorsText);
+            errors.setText(errorsDescriptionText.toString());
+            errors.setVisibility(View.VISIBLE);
+        }
+
+        // keywords
+        View pageKeywords = findViewById(R.id.pageKeywords);
+        ((TextView) pageKeywords.findViewById(R.id.propertyTitleText)).setText("Keywords");
+        ((TextView) pageKeywords.findViewById(R.id.propertyTitleValue)).setText(page.getKeywords());
+        if(page.getKeywords().length() == 0) {
+            TextView errors = (TextView) pageKeywords.findViewById(R.id.propertyErrorsText);
+            errors.setText("No keywords found");
+            errors.setVisibility(View.VISIBLE);
+        }
+
 
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
@@ -60,5 +106,6 @@ public class PageActivity extends AppCompatActivity {
             }
         });
     }
+
 
 }

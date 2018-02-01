@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -10,95 +10,36 @@
     tools:showIn="@layout/activity_page">
 
 
-    <ScrollView
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        tools:layout_editor_absoluteX="0dp"
-        tools:layout_editor_absoluteY="0dp">
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
 
-        <TableLayout
+        <include
+            android:id="@+id/pageTitle"
+            layout="@layout/page_property"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:shrinkColumns="2">
+            android:layout_height="wrap_content" />
 
-            <!-- title -->
-            <TableRow>
+        <include
+            android:id="@+id/pageH1"
+            layout="@layout/page_property"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
 
-                <ProgressBar
-                    android:id="@+id/pageTitleProgress"
-                    style="?android:attr/progressBarStyle"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:max="100" />
+        <include
+            android:id="@+id/pageDescription"
+            layout="@layout/page_property"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
 
-                <TextView
-                    android:id="@+id/pageTitleText"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:text="@string/page_title"
-                    android:textAppearance="@android:style/TextAppearance.Material.Subhead" />
+        <include
+            android:id="@+id/pageKeywords"
+            layout="@layout/page_property"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
 
-                <TextView
-                    android:id="@+id/pageTitleValue"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:text="TextView" />
-            </TableRow>
-
-            <!-- Description -->
-            <TableRow>
-
-                <ProgressBar
-                    android:id="@+id/pageDescriptionProgress"
-                    style="?android:attr/progressBarStyle"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:max="100" />
-
-                <TextView
-                    android:id="@+id/pageDescriptionText"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:text="@string/page_description"
-                    android:textAppearance="@android:style/TextAppearance.Material.Subhead" />
-
-                <TextView
-                    android:id="@+id/pageDescriptionValue"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:text="TextView"
-                    tools:text="@string/lorem" />
-            </TableRow>
-
-            <!-- keywords -->
-            <TableRow>
-
-                <ProgressBar
-                    android:id="@+id/pageKeywordsProgress"
-                    style="?android:attr/progressBarStyle"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:max="100" />
-
-                <TextView
-                    android:id="@+id/pageKeywordsText"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="8dp"
-                    android:text="@string/page__keywords"
-                    android:textAppearance="@android:style/TextAppearance.Material.Subhead" />
-
-                <TextView
-                    android:id="@+id/pageKeywordsValue"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="8dp"
-                    android:text="TextView" />
-            </TableRow>
+    </LinearLayout>
 
 
-        </TableLayout>
-
-    </ScrollView>
-
-</android.support.constraint.ConstraintLayout>
+</ScrollView>
