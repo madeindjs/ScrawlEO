@@ -6,15 +6,17 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.rousseau_alexandre.scrawleo.R;
+import com.rousseau_alexandre.scrawleo.services.PageError;
 
 import java.util.List;
 
 /**
  * Adapter for list or pages
- *
+ * <p>
  * https://github.com/florent37/TutosAndroidFrance/tree/master/ListViewSample
  * http://tutos-android-france.com/listview-afficher-une-liste-delements/
  */
@@ -31,16 +33,16 @@ public class PageAdapter extends ArrayAdapter<Page> {
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
 
-        if(convertView == null){
+        if (convertView == null) {
             convertView = LayoutInflater.from(getContext()).inflate(R.layout.list_page, parent, false);
         }
 
         RecipeViewHolder viewHolder = (RecipeViewHolder) convertView.getTag();
 
-        if(viewHolder == null){
+        if (viewHolder == null) {
             viewHolder = new RecipeViewHolder();
             viewHolder.url = (TextView) convertView.findViewById(R.id.url);
-            viewHolder.status = (TextView) convertView.findViewById(R.id.statusPageText);
+            viewHolder.rate = (ProgressBar) convertView.findViewById(R.id.rate);
             convertView.setTag(viewHolder);
         }
 
@@ -49,7 +51,14 @@ public class PageAdapter extends ArrayAdapter<Page> {
 
         // il ne reste plus qu'à remplir notre vue
         viewHolder.url.setText(page.getUrl());
-        viewHolder.status.setTextColor(Color.GREEN);
+
+        int rateValue = viewHolder.rate.getMax();
+
+        for (PageError error : page.getErrors()     ) {
+            rateValue -= error.getPriority();
+        }
+
+        viewHolder.rate.setProgress(rateValue);
 
         return convertView;
     }
@@ -62,6 +71,6 @@ public class PageAdapter extends ArrayAdapter<Page> {
 
     private class RecipeViewHolder {
         public TextView url;
-        public TextView status;
+        public ProgressBar rate;
     }
 }

@@ -175,9 +175,35 @@ public class Page extends Record {
     }
 
     public Vector<PageError> getErrors() {
-        Vector<PageError> errors = new Vector<PageError>();
+        Vector<PageError> errors = new Vector<>();
 
-        // TODO: check all the things here
+        // check title
+        int titleSize = title.length();
+        if (titleSize == 0) {
+            errors.add(PageError.TITLE_EMPTY);
+        } else if (titleSize > TITLE_MAX) {
+            errors.add(PageError.TITLE_TOO_LONG);
+        }
+
+        // check h1
+        if(h1.length() == 0){
+            errors.add(PageError.H1_EMPTY);
+        }
+
+        // check description
+        int descriptionSize = description.length();
+        if (descriptionSize== 0) {
+            errors.add(PageError.DESCRIPTION_TOO_SHORT);
+        } else if (descriptionSize > DESCRIPTION_MAX) {
+            errors.add(PageError.DESCRIPTION_TOO_LONG);
+        } else if (descriptionSize < DESCRIPTION_MIN) {
+            errors.add(PageError.DESCRIPTION_TOO_SHORT);
+        }
+
+        // check keywords
+        if(keywords.length() == 0){
+            errors.add(PageError.KEYWORDS_EMPTY);
+        }
 
         return errors;
     }

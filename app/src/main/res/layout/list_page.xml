@@ -10,26 +10,25 @@
 
     <TextView
         android:id="@+id/url"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="8dp"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
         android:textAppearance="@android:style/TextAppearance.Material.Medium"
-        app:layout_constraintBottom_toBottomOf="@+id/statusPageText"
-        app:layout_constraintStart_toEndOf="@+id/statusPageText"
-        app:layout_constraintTop_toTopOf="@+id/statusPageText"
+        app:layout_constraintStart_toStartOf="parent"
+        tools:layout_editor_absoluteY="16dp"
         tools:text="/tutorial/2017/11/28/rust.html" />
 
-    <TextView
-        android:id="@+id/statusPageText"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+    <ProgressBar
+        android:id="@+id/rate"
+        style="@style/Widget.AppCompat.ProgressBar.Horizontal"
+        android:layout_width="0dp"
+        android:layout_height="20dp"
+        android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"
-        android:text="⬤"
-        android:textSize="36sp"
+        android:layout_marginTop="8dp"
+        android:max="17"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:text="⬤" />
+        app:layout_constraintTop_toBottomOf="@+id/url" />
 
 </android.support.constraint.ConstraintLayout>
