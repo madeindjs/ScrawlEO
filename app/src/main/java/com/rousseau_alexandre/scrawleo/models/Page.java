@@ -5,12 +5,15 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 
+import com.rousseau_alexandre.scrawleo.services.PageError;
+
 import org.jsoup.nodes.Document;
 
 import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.Vector;
 
 /**
  * Represent a page scraped
@@ -18,7 +21,7 @@ import java.util.List;
 public class Page extends Record {
 
     public static String TABLE_NAME = "pages";
-    public static final String DATABASE_CREATE =  "CREATE TABLE " + TABLE_NAME + " ("
+    public static final String DATABASE_CREATE = "CREATE TABLE " + TABLE_NAME + " ("
             + "id INTEGER PRIMARY KEY AUTOINCREMENT,"
             + "scrawler_id INTEGER NOT NULL,"
             + "url TEXT NOT NULL,"
@@ -30,6 +33,10 @@ public class Page extends Record {
             + "inserted_at INTEGER,"
             + "UNIQUE(scrawler_id, url) ON CONFLICT REPLACE);";
     public static final String SELECT_FIELDS = "id, scrawler_id, url, title, description, keywords, status, h1";
+
+    public static final int DESCRIPTION_MIN = 230;
+    public static final int DESCRIPTION_MAX = 320;
+    public static final int TITLE_MAX = 71;
 
     protected long scrawler_id;
     /**
@@ -63,6 +70,7 @@ public class Page extends Record {
 
     /**
      * Cursor obtened from this kind of query `SELECT id, url FROM scrawlers`
+     *
      * @param cursor
      */
     public Page(Cursor cursor) {
@@ -159,10 +167,19 @@ public class Page extends Record {
 
     /**
      * Dirty truck to get table name in child class
+     *
      * @return
      */
     protected String getTableName() {
         return TABLE_NAME;
+    }
+
+    public Vector<PageError> getErrors() {
+        Vector<PageError> errors = new Vector<PageError>();
+
+        // TODO: check all the things here
+
+        return errors;
     }
 
 }
