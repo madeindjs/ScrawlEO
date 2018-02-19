@@ -1,7 +1,6 @@
 package com.rousseau_alexandre.scrawleo.models;
 
 import android.content.Context;
-import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -9,10 +8,11 @@ import android.widget.ArrayAdapter;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
+import com.github.lzyzsd.circleprogress.CircleProgress;
+import com.github.lzyzsd.circleprogress.DonutProgress;
 import com.rousseau_alexandre.scrawleo.R;
 import com.rousseau_alexandre.scrawleo.services.PageError;
 
-import java.util.List;
 
 /**
  * Adapter for list or pages
@@ -42,7 +42,7 @@ public class PageAdapter extends ArrayAdapter<Page> {
         if (viewHolder == null) {
             viewHolder = new RecipeViewHolder();
             viewHolder.url = (TextView) convertView.findViewById(R.id.url);
-            viewHolder.rate = (ProgressBar) convertView.findViewById(R.id.rate);
+            viewHolder.rate = (CircleProgress) convertView.findViewById(R.id.rate);
             convertView.setTag(viewHolder);
         }
 
@@ -71,6 +71,6 @@ public class PageAdapter extends ArrayAdapter<Page> {
 
     private class RecipeViewHolder {
         public TextView url;
-        public ProgressBar rate;
+        public CircleProgress rate;
     }
 }

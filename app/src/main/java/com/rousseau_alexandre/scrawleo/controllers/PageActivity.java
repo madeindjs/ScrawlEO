@@ -33,7 +33,6 @@ public class PageActivity extends AppCompatActivity {
         toolbar.setTitle(page.getUrl());
         setSupportActionBar(toolbar);
 
-
         // set title
         View pageTitle = findViewById(R.id.pageTitle);
         ((TextView) pageTitle.findViewById(R.id.propertyTitleText)).setText("Title");
@@ -54,7 +53,6 @@ public class PageActivity extends AppCompatActivity {
             errors.setText(errorsTitleText.toString());
             errors.setVisibility(View.VISIBLE);
         }
-
 
         // h1
         View pageH1 = findViewById(R.id.pageH1);
