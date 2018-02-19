@@ -8,9 +8,11 @@ import android.database.sqlite.SQLiteDatabase;
 import org.jsoup.nodes.Document;
 
 import java.sql.Timestamp;
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.Random;
 
 /**
  * Represent a page scraped
@@ -122,6 +124,11 @@ public class Page extends Record {
 
     public String getH1() {
         return h1;
+    }
+
+    public int getRate() {
+        Random rand = new Random();
+        return rand.nextInt(100);
     }
 
     public String getDescription() {
