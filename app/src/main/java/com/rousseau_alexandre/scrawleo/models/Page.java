@@ -14,7 +14,6 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.Vector;
-import java.util.Random;
 
 /**
  * Represent a page scraped
@@ -99,6 +98,10 @@ public class Page extends Record {
         keywords = document.select("meta[name=\"keywords\"]").attr("content");
     }
 
+    public Page(String _url) {
+        url = _url;
+    }
+
     public static List<Page> all(Context context) {
         SQLiteDatabase database = getDatabase(context);
         Cursor cursor = database.rawQuery(
@@ -125,6 +128,22 @@ public class Page extends Record {
         return url;
     }
 
+    public String getUrlWithoutDomain() {
+        String[] parts = url.split("/");
+        StringBuilder urlWithoutDomain = new StringBuilder();
+
+        if(parts.length <= 3) {
+            return "/";
+        }
+
+        for (int i = 3 ; i < parts.length ; i++) {
+            urlWithoutDomain.append("/");
+            urlWithoutDomain.append(parts[i]);
+        }
+
+        return urlWithoutDomain.toString();
+    }
+
     public String getTitle() {
         return title;
     }
@@ -134,8 +153,17 @@ public class Page extends Record {
     }
 
     public int getRate() {
-        Random rand = new Random();
-        return rand.nextInt(100);
+        int rate = 100;
+
+        for (PageError error : getErrors()) {
+            rate = rate - error.getSeverity();
+        }
+
+        if(rate < 0) {
+            return 0;
+        }
+
+        return rate;
     }
 
     public String getDescription() {
@@ -192,13 +220,13 @@ public class Page extends Record {
         }
 
         // check h1
-        if(h1.length() == 0){
+        if (h1.length() == 0) {
             errors.add(PageError.H1_EMPTY);
         }
 
         // check description
         int descriptionSize = description.length();
-        if (descriptionSize== 0) {
+        if (descriptionSize == 0) {
             errors.add(PageError.DESCRIPTION_TOO_SHORT);
         } else if (descriptionSize > DESCRIPTION_MAX) {
             errors.add(PageError.DESCRIPTION_TOO_LONG);
@@ -207,7 +235,7 @@ public class Page extends Record {
         }
 
         // check keywords
-        if(keywords.length() == 0){
+        if (keywords.length() == 0) {
             errors.add(PageError.KEYWORDS_EMPTY);
         }
 

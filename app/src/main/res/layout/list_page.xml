@@ -19,6 +19,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         custom:donut_progress="30"
+        custom:circle_suffix_text=""
         />
 
 
@@ -31,6 +32,7 @@
         android:layout_marginTop="8dp"
         android:textAppearance="@android:style/TextAppearance.Material.Medium"
         app:layout_constraintBottom_toBottomOf="@+id/rate"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/rate"
         app:layout_constraintTop_toTopOf="@+id/rate"
         tools:text="/tutorial/2017/11/28/rust.html" />

@@ -50,15 +50,8 @@ public class PageAdapter extends ArrayAdapter<Page> {
         Page page = getItem(position);
 
         // il ne reste plus qu'à remplir notre vue
-        viewHolder.url.setText(page.getUrl());
-
-        int rateValue = viewHolder.rate.getMax();
-
-        for (PageError error : page.getErrors()     ) {
-            rateValue -= error.getPriority();
-        }
-
-        viewHolder.rate.setProgress(rateValue);
+        viewHolder.url.setText(page.getUrlWithoutDomain());
+        viewHolder.rate.setProgress(page.getRate());
 
         return convertView;
     }

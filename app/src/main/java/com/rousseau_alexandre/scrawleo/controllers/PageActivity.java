@@ -10,6 +10,7 @@ import android.view.View;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
+import com.github.lzyzsd.circleprogress.CircleProgress;
 import com.rousseau_alexandre.scrawleo.R;
 import com.rousseau_alexandre.scrawleo.models.Page;
 import com.rousseau_alexandre.scrawleo.models.Scrawler;
@@ -28,6 +29,9 @@ public class PageActivity extends AppCompatActivity {
 
         Intent intent = getIntent();
         page = (Page) intent.getSerializableExtra(EXTRA_PAGE);
+
+
+        ((CircleProgress) findViewById(R.id.rate)).setProgress(page.getRate());
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         toolbar.setTitle(page.getUrl());
