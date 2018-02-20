@@ -10,7 +10,7 @@
 
     <com.rousseau_alexandre.scrawleo.controllers.ListViewPages
         android:id="@+id/listPage"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="0dp"
         android:scrollbars="vertical"
         app:layout_constraintBottom_toBottomOf="parent"
