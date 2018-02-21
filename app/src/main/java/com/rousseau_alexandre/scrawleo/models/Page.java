@@ -178,7 +178,7 @@ public class Page extends Record {
         return status;
     }
 
-    public Date getInserted_at() {
+    public Date getInsertedAt() {
         return inserted_at;
     }
 

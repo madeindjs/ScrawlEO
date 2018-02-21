@@ -41,6 +41,13 @@ public class PageActivity extends AppCompatActivity {
         View pageTitle = findViewById(R.id.pageTitle);
         ((TextView) pageTitle.findViewById(R.id.propertyTitleText)).setText("Title");
         ((TextView) pageTitle.findViewById(R.id.propertyTitleValue)).setText(page.getTitle());
+
+
+        // set bar
+        View pageBar = findViewById(R.id.pageBar);
+        String insertedAt = page.getInsertedAt() != null ? page.getInsertedAt().toString() : "???";
+        ((TextView) pageBar.findViewById(R.id.scrawlerAtValue)).setText(insertedAt);
+
         // check errors
         StringBuilder errorsTitleText = new StringBuilder();
         int titleSize = page.getTitle().length();
