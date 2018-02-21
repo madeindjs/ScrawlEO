@@ -1,63 +1,35 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:custom="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/constraintLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:layout_centerHorizontal="true"
     android:padding="20dp">
 
-    <TextView
-        android:id="@+id/nbPages"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_above="@+id/imageView3"
-        android:layout_toEndOf="@+id/imageView4"
-        android:text="3"
-        android:textAppearance="@android:style/TextAppearance.Material.Medium" />
-
-    <TextView
-        android:id="@+id/nbScraped"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignBottom="@+id/imageView3"
-        android:layout_toEndOf="@+id/imageView3"
-        android:text="2018-05-31 20:30:00"
-        android:textAppearance="@android:style/TextAppearance.Material.Small" />
 
     <TextView
         android:id="@+id/name"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
         android:textAppearance="@android:style/TextAppearance.Material.Large"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
         tools:text="Scrawler's url" />
 
-    <ImageView
-        android:id="@+id/imageView3"
-        android:layout_width="24dp"
-        android:layout_height="24dp"
-        android:layout_alignParentStart="true"
-        android:layout_below="@+id/imageView4"
-        app:srcCompat="@drawable/ic_material_time" />
-
-    <ImageView
-        android:id="@+id/imageView4"
-        android:layout_width="24dp"
-        android:layout_height="24dp"
-        android:layout_alignParentStart="true"
-        android:layout_below="@+id/progressBarPages"
-        app:srcCompat="@drawable/ic_material_link" />
-
-    <ProgressBar
-        android:id="@+id/progressBarPages"
-        style="?android:attr/progressBarStyleHorizontal"
-        android:layout_width="match_parent"
+    <include
+        android:id="@+id/scrawlerBar"
+        layout="@layout/scrawler_bar"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_alignParentStart="true"
-        android:layout_below="@+id/name"
-        android:max="1"
-        android:progress="1" />
+        android:layout_marginTop="8dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/name" />
 
-</RelativeLayout>
+</android.support.constraint.ConstraintLayout>
