@@ -10,6 +10,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ProgressBar;
+import android.widget.TextView;
 
 import com.rousseau_alexandre.scrawleo.R;
 import com.rousseau_alexandre.scrawleo.models.Page;
@@ -39,6 +40,13 @@ public class ScrawlerActivity extends AppCompatActivity {
         scrawler = (Scrawler) intent.getSerializableExtra(EXTRA_RECIPE);
 
         loadScrawlerData();
+
+        View scrawlerDescription = findViewById(R.id.scrawlerDescription);
+        View scrawlerBar = scrawlerDescription.findViewById(R.id.scrawlerBar);
+        TextView nbLinkValue = (TextView) scrawlerBar.findViewById(R.id.nbLinkValue);
+        int countPage = scrawler.countPages(getApplicationContext());
+        // nbLinkValue.setText();
+        nbLinkValue.setText(Integer.toString(countPage));
 
         listPage = (ListViewPages) findViewById(R.id.listPage);
         listPage.loadPages(ScrawlerActivity.this, scrawler);

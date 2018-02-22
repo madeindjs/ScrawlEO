@@ -23,7 +23,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
-        android:text="9"
+        android:text="0"
         android:textAppearance="@android:style/TextAppearance.Material.Small"
         app:layout_constraintStart_toEndOf="@+id/nbLinkIcon"
         app:layout_constraintTop_toTopOf="parent" />
@@ -44,7 +44,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
-        android:text="2018-01-01 00:00:00"
+        android:text="1970-01-01 00:00:00"
         android:textAppearance="@android:style/TextAppearance.Material.Small"
         app:layout_constraintStart_toEndOf="@+id/scrapedAtImage"
         app:layout_constraintTop_toTopOf="parent" />

@@ -5,18 +5,19 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
-    tools:context="com.rousseau_alexandre.scrawleo.com.rousseau_alexandre.scrawleo.controllers.ScrawlerActivity"
+    tools:context="com.rousseau_alexandre.scrawleo.controllers.ScrawlerActivity"
     tools:showIn="@layout/activity_scrawler">
 
     <com.rousseau_alexandre.scrawleo.controllers.ListViewPages
         android:id="@+id/listPage"
         android:layout_width="0dp"
         android:layout_height="0dp"
+        android:layout_marginTop="8dp"
         android:scrollbars="vertical"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@+id/scrawlerDescription" />
 
     <ProgressBar
         android:id="@+id/crawlerProgress"
@@ -29,6 +30,18 @@
         android:layout_marginTop="32dp"
         android:visibility="invisible"
         app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <include
+        android:id="@+id/scrawlerDescription"
+        layout="@layout/scrawler_description"
+        android:layout_width="0dp"
+        android:layout_height="150dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
