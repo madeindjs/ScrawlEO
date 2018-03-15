@@ -40,5 +40,13 @@ dependencies {
     compile group: 'edu.uci.ics', name: 'crawler4j', version: '4.3'
     compile 'com.github.lzyzsd:circleprogress:1.2.1'
     compile 'org.jsoup:jsoup:1.11.2'
+
+    // to fix HTTP client
+    // https://github.com/BorderCloud/SPARQL-JAVA/issues/2
+    dependencies {
+        compile group: 'org.apache.httpcomponents' , name: 'httpclient-android' , version: '4.3.5.1'
+    }
+
+    compile 'org.apache.httpcomponents:httpclient-android:4.3.5'
     testCompile 'junit:junit:4.12'
 }

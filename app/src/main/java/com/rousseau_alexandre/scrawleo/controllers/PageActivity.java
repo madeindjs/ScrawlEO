@@ -7,20 +7,17 @@ import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
-import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.github.lzyzsd.circleprogress.CircleProgress;
 import com.rousseau_alexandre.scrawleo.R;
-import com.rousseau_alexandre.scrawleo.models.Page;
-import com.rousseau_alexandre.scrawleo.models.Scrawler;
+import com.rousseau_alexandre.scrawleo.models.ScrapedPage;
 
-import static com.rousseau_alexandre.scrawleo.controllers.MainActivity.EXTRA_RECIPE;
 import static com.rousseau_alexandre.scrawleo.controllers.ScrawlerActivity.EXTRA_PAGE;
 
 public class PageActivity extends AppCompatActivity {
 
-    private Page page;
+    private ScrapedPage scrapedPage;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,29 +25,29 @@ public class PageActivity extends AppCompatActivity {
         setContentView(R.layout.activity_page);
 
         Intent intent = getIntent();
-        page = (Page) intent.getSerializableExtra(EXTRA_PAGE);
+        scrapedPage = (ScrapedPage) intent.getSerializableExtra(EXTRA_PAGE);
 
 
-        ((CircleProgress) findViewById(R.id.rate)).setProgress(page.getRate());
+        ((CircleProgress) findViewById(R.id.rate)).setProgress(scrapedPage.getRate());
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        toolbar.setTitle(page.getUrl());
+        toolbar.setTitle(scrapedPage.getUrl());
         setSupportActionBar(toolbar);
 
         // set title
         View pageTitle = findViewById(R.id.pageTitle);
         ((TextView) pageTitle.findViewById(R.id.propertyTitleText)).setText("Title");
-        ((TextView) pageTitle.findViewById(R.id.propertyTitleValue)).setText(page.getTitle());
+        ((TextView) pageTitle.findViewById(R.id.propertyTitleValue)).setText(scrapedPage.getTitle());
 
 
         // set bar
         View pageBar = findViewById(R.id.pageBar);
-        String insertedAt = page.getInsertedAt() != null ? page.getInsertedAt().toString() : "???";
+        String insertedAt = Integer.toString(scrapedPage.getInsertedAt());
         ((TextView) pageBar.findViewById(R.id.scrawlerAtValue)).setText(insertedAt);
 
         // check errors
         StringBuilder errorsTitleText = new StringBuilder();
-        int titleSize = page.getTitle().length();
+        int titleSize = scrapedPage.getTitle().length();
         if (titleSize == 0) {
             errorsTitleText.append("no title provided");
         } else if (titleSize > 60) {
@@ -68,9 +65,9 @@ public class PageActivity extends AppCompatActivity {
         // h1
         View pageH1 = findViewById(R.id.pageH1);
         ((TextView) pageH1.findViewById(R.id.propertyTitleText)).setText("H1");
-        ((TextView) pageH1.findViewById(R.id.propertyTitleValue)).setText(page.getH1());
+        ((TextView) pageH1.findViewById(R.id.propertyTitleValue)).setText(scrapedPage.getH1());
         // TODO: Check duplicates
-        if(page.getH1().length() == 0) {
+        if(scrapedPage.getH1().length() == 0) {
             TextView errors = (TextView) pageH1.findViewById(R.id.propertyErrorsText);
             errors.setText("No H1 found");
             errors.setVisibility(View.VISIBLE);
@@ -79,9 +76,9 @@ public class PageActivity extends AppCompatActivity {
         // description
         View pageDescription = findViewById(R.id.pageDescription);
         ((TextView) pageDescription.findViewById(R.id.propertyTitleText)).setText("Description");
-        ((TextView) pageDescription.findViewById(R.id.propertyTitleValue)).setText(page.getDescription());
+        ((TextView) pageDescription.findViewById(R.id.propertyTitleValue)).setText(scrapedPage.getDescription());
         StringBuilder errorsDescriptionText = new StringBuilder();
-        int descriptionSize = page.getDescription().length();
+        int descriptionSize = scrapedPage.getDescription().length();
         if (descriptionSize == 0) {
             errorsDescriptionText.append("no description provided");
         } else if (descriptionSize > 320) {
@@ -98,8 +95,8 @@ public class PageActivity extends AppCompatActivity {
         // keywords
         View pageKeywords = findViewById(R.id.pageKeywords);
         ((TextView) pageKeywords.findViewById(R.id.propertyTitleText)).setText("Keywords");
-        ((TextView) pageKeywords.findViewById(R.id.propertyTitleValue)).setText(page.getKeywords());
-        if(page.getKeywords().length() == 0) {
+        ((TextView) pageKeywords.findViewById(R.id.propertyTitleValue)).setText(scrapedPage.getKeywords());
+        if(scrapedPage.getKeywords().length() == 0) {
             TextView errors = (TextView) pageKeywords.findViewById(R.id.propertyErrorsText);
             errors.setText("No keywords found");
             errors.setVisibility(View.VISIBLE);

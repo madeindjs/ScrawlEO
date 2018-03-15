@@ -1,17 +1,17 @@
 package com.rousseau_alexandre.scrawleo.services;
 
 
-import com.rousseau_alexandre.scrawleo.models.MySQLiteHelper;
+import android.app.Application;
+import android.content.Context;
+
+import com.rousseau_alexandre.scrawleo.models.ScrapedPage;
 
 import edu.uci.ics.crawler4j.crawler.Page;
 import edu.uci.ics.crawler4j.crawler.WebCrawler;
 import edu.uci.ics.crawler4j.url.WebURL;
 
-import java.sql.SQLException;
 import java.text.ParseException;
 import java.util.Vector;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import java.util.regex.Pattern;
 
 /**
@@ -76,7 +76,15 @@ public class SeoCrawler extends WebCrawler {
     }
 
     protected void insertInDatabase(Page page) {
-        // TODO
+        SeoCrawlController controller = (SeoCrawlController) this.getMyController();
+
+        try {
+            ScrapedPage scrapedPage = new ScrapedPage(page);
+            Context context = controller.getContext();
+            scrapedPage.save(context);
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
     }
 
 }

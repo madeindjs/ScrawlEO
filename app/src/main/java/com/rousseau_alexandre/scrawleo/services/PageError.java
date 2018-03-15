@@ -1,11 +1,9 @@
 package com.rousseau_alexandre.scrawleo.services;
 
 
-import android.graphics.Color;
-
-import static com.rousseau_alexandre.scrawleo.models.Page.DESCRIPTION_MAX;
-import static com.rousseau_alexandre.scrawleo.models.Page.DESCRIPTION_MIN;
-import static com.rousseau_alexandre.scrawleo.models.Page.TITLE_MAX;
+import static com.rousseau_alexandre.scrawleo.models.ScrapedPage.DESCRIPTION_MAX;
+import static com.rousseau_alexandre.scrawleo.models.ScrapedPage.DESCRIPTION_MIN;
+import static com.rousseau_alexandre.scrawleo.models.ScrapedPage.TITLE_MAX;
 
 public enum PageError implements Comparable<PageError> {
 
@@ -23,7 +21,7 @@ public enum PageError implements Comparable<PageError> {
     H1_DUPLICATE("\"h1\" is duplicate on another page", 30),
     DESCRIPTION_DUPLICATE("Meta tag \"Description\" is duplicate on another page", 10),
     // not found
-    UNREACHABLE("Page is unreachable", 100);
+    UNREACHABLE("ScrapedPage is unreachable", 100);
 
     private final String description;
 

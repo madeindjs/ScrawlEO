@@ -13,15 +13,16 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.rousseau_alexandre.scrawleo.R;
-import com.rousseau_alexandre.scrawleo.models.Page;
 import com.rousseau_alexandre.scrawleo.models.PageAdapter;
+import com.rousseau_alexandre.scrawleo.models.ScrapedPage;
 import com.rousseau_alexandre.scrawleo.models.Scrawler;
-import com.rousseau_alexandre.scrawleo.models.ScrawlerAdapter;
-import com.rousseau_alexandre.scrawleo.services.WebCrawler;
+import com.rousseau_alexandre.scrawleo.services.Observer;
+import com.rousseau_alexandre.scrawleo.services.SeoCrawlController;
+import com.rousseau_alexandre.scrawleo.services.SeoCrawler;
 
 import static com.rousseau_alexandre.scrawleo.controllers.MainActivity.EXTRA_RECIPE;
 
-public class ScrawlerActivity extends AppCompatActivity {
+public class ScrawlerActivity extends AppCompatActivity implements Observer{
 
     private ListViewPages listPage;
     private Scrawler scrawler;
@@ -48,56 +49,38 @@ public class ScrawlerActivity extends AppCompatActivity {
         // nbLinkValue.setText();
         nbLinkValue.setText(Integer.toString(countPage));
 
+        SeoCrawler.observers.add(this);
+
         listPage = (ListViewPages) findViewById(R.id.listPage);
         listPage.loadPages(ScrawlerActivity.this, scrawler);
         listPage.setOnItemClickListener(new AdapterView.OnItemClickListener() {
 
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                Page page = (Page) listPage.getItemAtPosition(position);
+                ScrapedPage scrapedPage = (ScrapedPage) listPage.getItemAtPosition(position);
                 Intent intent = new Intent(ScrawlerActivity.this, PageActivity.class);
-                intent.putExtra(EXTRA_PAGE, page);
+                intent.putExtra(EXTRA_PAGE, scrapedPage);
                 startActivity(intent);
             }
         });
+
+        SeoCrawler.observers.add(this);
 
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 // @todo set FAV button as stop crawl
-                WebCrawler crawler = new WebCrawler(ScrawlerActivity.this, scrawler, mCallback);
-                crawler.startCrawlerTask();
+                try {
+                    SeoCrawlController crawler = SeoCrawlController.create(scrawler.getUrl(), ScrawlerActivity.this);
+                    crawler.startNonBlocking();
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
                 progress.setVisibility(View.VISIBLE);
             }
         });
     }
-
-    private WebCrawler.CrawlingCallback mCallback = new WebCrawler.CrawlingCallback() {
-
-        @Override
-        public void onPageCrawlingCompleted() {
-            // android.view.ViewRootImpl$CalledFromWrongThreadException:
-            // Only the original thread that created a view hierarchy can touch its views.
-            // PageAdapter adapter = (PageAdapter) listPage.getAdapter();
-            // adapter.reload();
-        }
-
-        @Override
-        public void onPageCrawlingFailed(String Url, int errorCode) {
-            // TODO Auto-generated method stub
-
-        }
-
-        @Override
-        public void onCrawlingCompleted() {
-            progress.setVisibility(View.INVISIBLE);
-            PageAdapter adapter = (PageAdapter) listPage.getAdapter();
-            adapter.reload();
-        }
-
-    };
-
 
 
     /**
@@ -146,5 +129,21 @@ public class ScrawlerActivity extends AppCompatActivity {
         long id = scrawler.getId();
         scrawler = Scrawler.get(ScrawlerActivity.this, id);
         loadScrawlerData();
+    }
+
+    @Override
+    public void onPageCrawled(String url) {
+        // android.view.ViewRootImpl$CalledFromWrongThreadException:
+        // Only the original thread that created a view hierarchy can touch its views.
+        // PageAdapter adapter = (PageAdapter) listPage.getAdapter();
+        // adapter.reload();
+    }
+
+    @Override
+    public void onCrawlerFinish() {
+        progress.setVisibility(View.INVISIBLE);
+        PageAdapter adapter = (PageAdapter) listPage.getAdapter();
+        adapter.reload();
+        SeoCrawler.observers.remove(this);
     }
 }

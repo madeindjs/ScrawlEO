@@ -6,7 +6,6 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 /**
@@ -42,7 +41,7 @@ public class Scrawler extends Record {
 
         SQLiteDatabase db = getDatabase(context);
         int count = db.delete(
-                Page.TABLE_NAME, "scrawler_id = ?",
+                ScrapedPage.TABLE_NAME, "scrawler_id = ?",
                 new String[]{Long.toString(id)}
         );
         db.close();
@@ -85,33 +84,33 @@ public class Scrawler extends Record {
         return new Scrawler(cursor);
     }
 
-    public List<Page> getPages(Context context) {
+    public List<ScrapedPage> getPages(Context context) {
         SQLiteDatabase db = getDatabase(context);
         Cursor cursor = db.rawQuery(
                 String.format(
                         "SELECT %s FROM %s WHERE scrawler_id = ?",
-                        Page.SELECT_FIELDS,
-                        Page.TABLE_NAME
+                        ScrapedPage.SELECT_FIELDS,
+                        ScrapedPage.TABLE_NAME
                 ),
                 new String[]{Long.toString(id) }
         );
 
-        List<Page> pages = new ArrayList<>();
+        List<ScrapedPage> scrapedPages = new ArrayList<>();
         cursor.moveToFirst();
         while (!cursor.isAfterLast()) {
-            pages.add(new Page(cursor));
+            scrapedPages.add(new ScrapedPage(cursor));
             cursor.moveToNext();
         }
         db.close();
         cursor.close();
 
-        return pages;
+        return scrapedPages;
     }
 
     public int countPages(Context context) {
         SQLiteDatabase db = getDatabase(context);
         Cursor cursor = db.rawQuery(
-                String.format("SELECT COUNT(*) FROM %s WHERE scrawler_id = ?", Page.TABLE_NAME),
+                String.format("SELECT COUNT(*) FROM %s WHERE scrawler_id = ?", ScrapedPage.TABLE_NAME),
                 new String[]{Long.toString(id)}
         );
         int count = 0;
@@ -126,6 +125,21 @@ public class Scrawler extends Record {
         db.close();
 
         return count;
+    }
+
+    public int getLastInsertedAt(Context context) {
+        SQLiteDatabase database = getDatabase(context);
+        Cursor cursor = database.rawQuery(
+                String.format("SELECT inserted_at FROM %s ORDER BY inserted_at DESC LIMIT 1", ScrapedPage.TABLE_NAME),
+                null
+        );
+
+        cursor.moveToFirst();
+        if(!cursor.isAfterLast()) {
+            return cursor.getInt(0);
+        }
+
+        return 0;
     }
 
     public long getId() {

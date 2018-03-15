@@ -4,21 +4,21 @@ import android.content.Context;
 import android.util.AttributeSet;
 import android.widget.ListView;
 
-import com.rousseau_alexandre.scrawleo.models.Page;
+import com.rousseau_alexandre.scrawleo.models.ScrapedPage;
 import com.rousseau_alexandre.scrawleo.models.Scrawler;
 import com.rousseau_alexandre.scrawleo.models.PageAdapter;
 
 import java.util.List;
 
 /**
- * Custom ListView for pages
+ * Custom ListView for scrapedPages
  */
 public class ListViewPages extends ListView {
 
     /**
-     * List of all pages
+     * List of all scrapedPages
      */
-    private List<Page> pages;
+    private List<ScrapedPage> scrapedPages;
 
     public ListViewPages(Context context){
         super(context);
@@ -37,7 +37,7 @@ public class ListViewPages extends ListView {
     }
 
     /**
-     * Load all pages
+     * Load all scrapedPages
      *
      * @todo fetch this from https://raspberry-cook.fr
      * @param context

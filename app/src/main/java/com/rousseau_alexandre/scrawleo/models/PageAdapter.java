@@ -5,13 +5,10 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
-import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.github.lzyzsd.circleprogress.CircleProgress;
-import com.github.lzyzsd.circleprogress.DonutProgress;
 import com.rousseau_alexandre.scrawleo.R;
-import com.rousseau_alexandre.scrawleo.services.PageError;
 
 
 /**
@@ -20,7 +17,7 @@ import com.rousseau_alexandre.scrawleo.services.PageError;
  * https://github.com/florent37/TutosAndroidFrance/tree/master/ListViewSample
  * http://tutos-android-france.com/listview-afficher-une-liste-delements/
  */
-public class PageAdapter extends ArrayAdapter<Page> {
+public class PageAdapter extends ArrayAdapter<ScrapedPage> {
 
     private Scrawler scrawler;
 
@@ -47,11 +44,11 @@ public class PageAdapter extends ArrayAdapter<Page> {
         }
 
         // `getItem(position)` va récupérer l'item [position] de la List<Tweet> tweets
-        Page page = getItem(position);
+        ScrapedPage scrapedPage = getItem(position);
 
         // il ne reste plus qu'à remplir notre vue
-        viewHolder.url.setText(page.getUrlWithoutDomain());
-        viewHolder.rate.setProgress(page.getRate());
+        viewHolder.url.setText(scrapedPage.getUrlWithoutDomain());
+        viewHolder.rate.setProgress(scrapedPage.getRate());
 
         return convertView;
     }

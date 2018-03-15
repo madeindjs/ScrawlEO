@@ -19,7 +19,7 @@ public class MySQLiteHelper extends SQLiteOpenHelper {
 
     @Override
     public void onCreate(SQLiteDatabase database) {
-        database.execSQL(Page.DATABASE_CREATE);
+        database.execSQL(ScrapedPage.DATABASE_CREATE);
         database.execSQL(Scrawler.DATABASE_CREATE);
     }
 
@@ -33,7 +33,7 @@ public class MySQLiteHelper extends SQLiteOpenHelper {
                 )
         );
         db.execSQL("DROP TABLE IF EXISTS " + Scrawler.TABLE_NAME );
-        db.execSQL("DROP TABLE IF EXISTS " + Page.TABLE_NAME );
+        db.execSQL("DROP TABLE IF EXISTS " + ScrapedPage.TABLE_NAME );
         onCreate(db);
     }
 }
