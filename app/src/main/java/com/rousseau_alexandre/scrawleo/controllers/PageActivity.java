@@ -1,5 +1,6 @@
 package com.rousseau_alexandre.scrawleo.controllers;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
@@ -15,6 +16,8 @@ import com.rousseau_alexandre.scrawleo.R;
 import com.rousseau_alexandre.scrawleo.models.Page;
 import com.rousseau_alexandre.scrawleo.models.Scrawler;
 
+import java.util.Date;
+
 import static com.rousseau_alexandre.scrawleo.controllers.MainActivity.EXTRA_RECIPE;
 import static com.rousseau_alexandre.scrawleo.controllers.ScrawlerActivity.EXTRA_PAGE;
 
@@ -26,6 +29,7 @@ public class PageActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_page);
+        Context context = getBaseContext();
 
         Intent intent = getIntent();
         page = (Page) intent.getSerializableExtra(EXTRA_PAGE);
@@ -45,8 +49,8 @@ public class PageActivity extends AppCompatActivity {
 
         // set bar
         View pageBar = findViewById(R.id.pageBar);
-        String insertedAt = page.getInsertedAt() != null ? page.getInsertedAt().toString() : "???";
-        ((TextView) pageBar.findViewById(R.id.scrawlerAtValue)).setText(insertedAt);
+        String insertedAt = page.getInsertedAt()  != 0 ? page.getInsertedAtToDate().toString() : "???";
+        ((TextView) pageBar.findViewById(R.id.scrawledAtValue)).setText(insertedAt);
 
         // check errors
         StringBuilder errorsTitleText = new StringBuilder();

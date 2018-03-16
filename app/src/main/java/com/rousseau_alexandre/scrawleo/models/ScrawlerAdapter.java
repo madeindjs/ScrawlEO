@@ -5,13 +5,12 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
-import android.widget.ProgressBar;
 import android.widget.TextView;
 
 
-import com.github.lzyzsd.circleprogress.CircleProgress;
 import com.rousseau_alexandre.scrawleo.R;
 
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -29,6 +28,7 @@ public class ScrawlerAdapter extends ArrayAdapter<Scrawler> {
 
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
+        Context context = getContext();
 
         if(convertView == null){
             convertView = LayoutInflater.from(getContext()).inflate(R.layout.list_scrawler, parent, false);
@@ -42,7 +42,8 @@ public class ScrawlerAdapter extends ArrayAdapter<Scrawler> {
             // viewHolder.progressBarPages = (CircleProgress) convertView.findViewById(R.id.rate);
 
             View bar = convertView.findViewById(R.id.scrawlerBar);
-            viewHolder.nbLinkValue = (TextView) bar.findViewById(R.id.nbLinkValue);
+            viewHolder.nbLink = (TextView) bar.findViewById(R.id.nbLinkValue);
+            viewHolder.scrawledAt = (TextView) bar.findViewById(R.id.scrawledAtValue);
             convertView.setTag(viewHolder);
         }
 
@@ -51,8 +52,10 @@ public class ScrawlerAdapter extends ArrayAdapter<Scrawler> {
 
         // il ne reste plus qu'à remplir notre vue
         viewHolder.name.setText(scrawler.url);
-        int count = scrawler.countPages(getContext());
-        viewHolder.nbLinkValue.setText(Integer.toString(count));
+        int count = scrawler.countPages(context);
+        viewHolder.nbLink.setText(Integer.toString(count));
+        Date lastScrawl = scrawler.getLastScrawlDate(context);
+        viewHolder.scrawledAt.setText(lastScrawl != null ? lastScrawl.toString() : "never");
         // viewHolder.progressBarPages.setMax(count);
 
         return convertView;
@@ -66,7 +69,8 @@ public class ScrawlerAdapter extends ArrayAdapter<Scrawler> {
 
     private class RecipeViewHolder {
         public TextView name;
-        public TextView nbLinkValue;
+        public TextView nbLink;
+        public TextView scrawledAt;
         // public CircleProgress progressBarPages;
     }
 }

@@ -140,6 +140,20 @@ public class Scrawler extends Record {
         url = _name;
     }
 
+    public Date getLastScrawlDate(Context context) {
+
+        Cursor cursor = getDatabase(context).rawQuery(
+                String.format("SELECT scraped_at FROM %s ORDER BY scraped_at DESC LIMIT 1", Page.TABLE_NAME),
+                null
+        );
+        cursor.moveToFirst();
+
+        if(cursor.getCount() == 0) {
+            return null;
+        }
+
+        return new Date(cursor.getLong(0));
+    }
 
     protected ContentValues toContentValues() {
         ContentValues values = new ContentValues();

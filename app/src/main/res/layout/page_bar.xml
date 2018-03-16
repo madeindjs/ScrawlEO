@@ -8,7 +8,7 @@
 
 
     <ImageView
-        android:id="@+id/scrapedAtImage"
+        android:id="@+id/scrawledAtIcon"
         android:layout_width="15dp"
         android:layout_height="15dp"
         android:layout_marginStart="8dp"
@@ -18,14 +18,14 @@
         app:srcCompat="@drawable/ic_material_time" />
 
     <TextView
-        android:id="@+id/scrawlerAtValue"
+        android:id="@+id/scrawledAtValue"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_height="17dp"
         android:layout_marginStart="8dp"
         android:textAppearance="@android:style/TextAppearance.Material.Small"
-        app:layout_constraintBottom_toBottomOf="@+id/scrapedAtImage"
-        app:layout_constraintStart_toEndOf="@+id/scrapedAtImage"
-        app:layout_constraintTop_toTopOf="@+id/scrapedAtImage"
+        app:layout_constraintBottom_toBottomOf="@+id/scrawledAtIcon"
+        app:layout_constraintStart_toEndOf="@+id/scrawledAtIcon"
+        app:layout_constraintTop_toTopOf="@+id/scrawledAtIcon"
         tools:text="2018-01-01 00:00:00" />
 
 

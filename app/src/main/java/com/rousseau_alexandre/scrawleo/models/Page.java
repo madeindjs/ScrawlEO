@@ -9,9 +9,9 @@ import com.rousseau_alexandre.scrawleo.services.PageError;
 
 import org.jsoup.nodes.Document;
 
+import java.sql.Date;
 import java.sql.Timestamp;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 import java.util.Vector;
 
@@ -30,9 +30,9 @@ public class Page extends Record {
             + "keywords TEXT,"
             + "status INTEGER,"
             + "h1 TEXT,"
-            + "inserted_at INTEGER,"
+            + "scraped_at INTEGER,"
             + "UNIQUE(scrawler_id, url) ON CONFLICT REPLACE);";
-    public static final String SELECT_FIELDS = "id, scrawler_id, url, title, description, keywords, status, h1";
+    public static final String SELECT_FIELDS = "id, scrawler_id, url, title, description, keywords, status, h1, scraped_at";
 
     public static final int DESCRIPTION_MIN = 230;
     public static final int DESCRIPTION_MAX = 320;
@@ -66,7 +66,7 @@ public class Page extends Record {
     /**
      * Timestamp of insertion
      */
-    private Date inserted_at;
+    private long scraped_at;
 
     /**
      * Cursor obtened from this kind of query `SELECT id, url FROM scrawlers`
@@ -82,6 +82,7 @@ public class Page extends Record {
         keywords = cursor.getString(5);
         status = cursor.getInt(6);
         h1 = cursor.getString(7);
+        scraped_at = cursor.getInt(8);
     }
 
     public Page(Scrawler scrawler) {
@@ -178,14 +179,18 @@ public class Page extends Record {
         return status;
     }
 
-    public Date getInsertedAt() {
-        return inserted_at;
+    public long getInsertedAt() {
+        return scraped_at;
+    }
+
+    public Date getInsertedAtToDate() {
+        return new Date(scraped_at);
     }
 
     protected ContentValues toContentValues() {
-        Date date = new Date();
-        Timestamp timestamp = new Timestamp(date.getTime());
-        inserted_at = date;
+        Timestamp timestamp = new Timestamp(System.currentTimeMillis());
+
+        scraped_at = timestamp.getTime();
 
         ContentValues values = new ContentValues();
         values.put("url", url);
@@ -195,7 +200,7 @@ public class Page extends Record {
         values.put("description", description);
         values.put("keywords", keywords);
         values.put("status", status);
-        values.put("inserted_at", timestamp.getTime());
+        values.put("scraped_at", scraped_at);
         return values;
     }
 

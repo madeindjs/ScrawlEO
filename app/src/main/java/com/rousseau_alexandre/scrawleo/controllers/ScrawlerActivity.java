@@ -1,5 +1,6 @@
 package com.rousseau_alexandre.scrawleo.controllers;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
@@ -19,6 +20,8 @@ import com.rousseau_alexandre.scrawleo.models.Scrawler;
 import com.rousseau_alexandre.scrawleo.models.ScrawlerAdapter;
 import com.rousseau_alexandre.scrawleo.services.WebCrawler;
 
+import java.util.Date;
+
 import static com.rousseau_alexandre.scrawleo.controllers.MainActivity.EXTRA_RECIPE;
 
 public class ScrawlerActivity extends AppCompatActivity {
@@ -33,6 +36,7 @@ public class ScrawlerActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_scrawler);
+        Context context = getApplicationContext();
 
         progress = (ProgressBar) findViewById(R.id.crawlerProgress);
 
@@ -44,9 +48,13 @@ public class ScrawlerActivity extends AppCompatActivity {
         View scrawlerDescription = findViewById(R.id.scrawlerDescription);
         View scrawlerBar = scrawlerDescription.findViewById(R.id.scrawlerBar);
         TextView nbLinkValue = (TextView) scrawlerBar.findViewById(R.id.nbLinkValue);
-        int countPage = scrawler.countPages(getApplicationContext());
-        // nbLinkValue.setText();
+        int countPage = scrawler.countPages(context);
+        // nbLink.setText();
         nbLinkValue.setText(Integer.toString(countPage));
+
+        TextView scrawledAt = (TextView) scrawlerBar.findViewById(R.id.scrawledAtValue);
+        Date lastScrawl = scrawler.getLastScrawlDate(context);
+        scrawledAt.setText(lastScrawl != null ? lastScrawl.toString() : "never");
 
         listPage = (ListViewPages) findViewById(R.id.listPage);
         listPage.loadPages(ScrawlerActivity.this, scrawler);

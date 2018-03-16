@@ -29,7 +29,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <ImageView
-        android:id="@+id/scrapedAtImage"
+        android:id="@+id/scrawledAtIcon"
         android:layout_width="20dp"
         android:layout_height="20dp"
         android:layout_marginStart="24dp"
@@ -39,14 +39,14 @@
         app:srcCompat="@drawable/ic_material_time" />
 
     <TextView
-        android:id="@+id/scrawlerAtValue"
+        android:id="@+id/scrawledAtValue"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
         android:text="1970-01-01 00:00:00"
         android:textAppearance="@android:style/TextAppearance.Material.Small"
-        app:layout_constraintStart_toEndOf="@+id/scrapedAtImage"
+        app:layout_constraintStart_toEndOf="@+id/scrawledAtIcon"
         app:layout_constraintTop_toTopOf="parent" />
 
 
